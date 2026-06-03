@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sasikumar S | AI Engineer & Software Developer</title>
+    <meta name="description"
+        content="Portfolio of Sasikumar S — AI Engineer, Software Developer, and Computer Science student crafting intelligent solutions with AI, IoT, and Mobile Applications.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Pinyon+Script&family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==================== TOP RIGHT NAVIGATION ==================== -->
+    <nav class="top-nav" id="topNav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <div class="mobile-nav">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#skills" class="mobile-nav-link">Skills</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#projects" class="mobile-nav-link">Projects</a>
+        <a href="#achievements" class="mobile-nav-link">Achievements</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="hero">
+        <!-- Background Image (Right Side) -->
+        <div class="hero-image-side">
+            <img src="hero_section_template.png" alt="Sasikumar with AI Robot" class="hero-img">
+            <div class="hero-img-fade-left"></div>
+            <div class="hero-img-fade-bottom"></div>
+        </div>
+
+        <!-- Left Content -->
+        <div class="hero-content">
+            <!-- Top Quote moved inside left content -->
+            <div class="hero-top-quote fade-up" style="animation-delay: 0.1s;">
+                Engineering the Future with Intelligence
+            </div>
+
+            <p class="hero-greeting fade-up" style="animation-delay: 0.2s;">HI, I'M</p>
+            <h1 class="hero-name fade-up" style="animation-delay: 0.4s;">SASI<span class="name-outline">KUMAR</span>
+            </h1>
+            <p class="hero-roles fade-up" style="animation-delay: 0.6s;">SOFTWARE DEVELOPER &nbsp;|&nbsp; AI ENGINEER
+            </p>
+
+            <p class="hero-desc fade-up" style="animation-delay: 0.8s;">
+                A passionate developer crafting smart solutions that blend <strong>Artificial Intelligence</strong>,
+                <strong>Mobile Applications</strong>, and <strong>Modern Software Engineering.</strong> Building
+                scalable applications, AI-powered systems, and next-generation digital products that make a difference.
+            </p>
+
+            <div class="hero-cta fade-up" style="animation-delay: 1.0s;">
+                <a href="#projects" class="cta-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path
+                            d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"
+                            fill="currentColor" />
+                    </svg>
+                    VIEW PROJECTS
+                </a>
+                <a href="sasikumar_resume.pdf" download class="cta-btn cta-btn-outline">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor" />
+                    </svg>
+                    DOWNLOAD RESUME
+                </a>
+            </div>
+
+            <div class="hero-connect fade-up" style="animation-delay: 1.15s;">
+                <span class="connect-label">CONNECT WITH ME</span>
+                <span class="connect-dot"></span>
+                <span class="connect-line"></span>
+            </div>
+
+            <div class="hero-socials fade-up" style="animation-delay: 1.25s;">
+                <a href="https://github.com/sasikumar161106" target="_blank" class="hero-social-icon"
+                    aria-label="GitHub">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                            fill="currentColor" />
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/sasikumarsenthil" target="_blank" class="hero-social-icon"
+                    aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                            fill="currentColor" />
+                    </svg>
+                </a>
+                <a href="https://leetcode.com/u/ssk_codes/" target="_blank" class="hero-social-icon"
+                    aria-label="LeetCode">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.662-1.823.662s-1.357-.195-1.824-.662l-4.332-4.363c-.467-.467-.702-1.15-.702-1.863s.235-1.357.702-1.824l4.319-4.38c.467-.467 1.125-.645 1.837-.645s1.357.195 1.823.662l2.697 2.606c.514.515 1.365.497 1.9-.038.535-.536.553-1.387.038-1.901l-2.609-2.636a5.055 5.055 0 0 0-2.445-1.337l2.467-2.503c.516-.514.498-1.366-.037-1.901-.535-.535-1.387-.552-1.902-.038l-10.1 10.101c-.981.982-1.494 2.337-1.494 3.835 0 1.498.513 2.895 1.494 3.875l4.347 4.361c.981.979 2.337 1.452 3.834 1.452s2.853-.512 3.835-1.494l2.609-2.637c.514-.514.496-1.365-.039-1.9s-1.386-.553-1.899-.039zM20.811 13.01H10.666c-.702 0-1.27.604-1.27 1.346s.568 1.346 1.27 1.346h10.145c.701 0 1.27-.604 1.27-1.346s-.569-1.346-1.27-1.346z"
+                            fill="currentColor" />
+                    </svg>
+                </a>
+                <a href="mailto:sasikumarldrago@gmail.com" class="hero-social-icon" aria-label="Email">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                            fill="currentColor" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Available Badge (Moved outside for absolute positioning over image) -->
+        <div class="hero-available fade-up" style="animation-delay: 1.35s;">
+            <span class="available-dot"></span>
+            <span>AVAILABLE FOR INTERNSHIPS & COLLABORATIONS</span>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="about" id="about">
+        <div class="about-content scroll-reveal">
+            <div class="about-text-wrapper">
+                <h2 class="section-title">About Me</h2>
+                <p class="about-summary">
+                    I'm Sasikumar, a Software Developer passionate about building intelligent applications using
+                    <strong>AI</strong> and <strong>Cloud Technologies.</strong> I specialize in developing innovative
+                    solutions that combine modern software engineering with real-world problem-solving. Through
+                    continuous learning, hands-on projects, and research-driven development, I strive to create
+                    impactful digital experiences that make a difference.
+                </p>
+                <div class="about-socials">
+                    <a href="https://github.com/sasikumar161106" target="_blank" class="social-icon"
+                        aria-label="GitHub">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/sasikumarsenthil" target="_blank" class="social-icon"
+                        aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="https://leetcode.com/u/ssk_codes/" target="_blank" class="social-icon"
+                        aria-label="LeetCode">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.662-1.823.662s-1.357-.195-1.824-.662l-4.332-4.363c-.467-.467-.702-1.15-.702-1.863s.235-1.357.702-1.824l4.319-4.38c.467-.467 1.125-.645 1.837-.645s1.357.195 1.823.662l2.697 2.606c.514.515 1.365.497 1.9-.038.535-.536.553-1.387.038-1.901l-2.609-2.636a5.055 5.055 0 0 0-2.445-1.337l2.467-2.503c.516-.514.498-1.366-.037-1.901-.535-.535-1.387-.552-1.902-.038l-10.1 10.101c-.981.982-1.494 2.337-1.494 3.835 0 1.498.513 2.895 1.494 3.875l4.347 4.361c.981.979 2.337 1.452 3.834 1.452s2.853-.512 3.835-1.494l2.609-2.637c.514-.514.496-1.365-.039-1.9s-1.386-.553-1.899-.039zM20.811 13.01H10.666c-.702 0-1.27.604-1.27 1.346s.568 1.346 1.27 1.346h10.145c.701 0 1.27-.604 1.27-1.346s-.569-1.346-1.27-1.346z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="mailto:sasikumarldrago@gmail.com" class="social-icon" aria-label="Email">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section class="skills" id="skills">
+        <h2 class="section-title text-center scroll-reveal" style="margin-bottom: 2rem;">My Expertise</h2>
+
+        <div class="skills-wrapper">
+            <!-- Top Left: Languages -->
+            <div class="skills-card scroll-reveal">
+                <h3>Languages</h3>
+                <ul class="skills-list">
+                    <li><i class="devicon-python-plain colored"></i> <span>Python</span></li>
+                    <li><i class="devicon-java-plain colored"></i> <span>Java</span></li>
+                    <li><i class="devicon-cplusplus-plain colored"></i> <span>C++</span></li>
+                    <li><i class="devicon-dart-plain colored"></i> <span>Dart</span></li>
+                    <li><i class="devicon-html5-plain colored"></i> <span>HTML / CSS</span></li>
+                    <li><i class="devicon-javascript-plain colored"></i> <span>JavaScript</span></li>
+                    <li><i class="devicon-mysql-plain colored"></i> <span>SQL</span></li>
+                </ul>
+            </div>
+
+            <!-- Top Right: Frameworks -->
+            <div class="skills-card scroll-reveal">
+                <h3>Frameworks</h3>
+                <ul class="skills-list">
+                    <li><i class="devicon-flutter-plain colored"></i> <span>Flutter</span></li>
+                    <li><i class="devicon-firebase-plain colored"></i> <span>Firebase</span></li>
+                    <li><i class="devicon-android-plain colored"></i> <span>Android</span></li>
+                    <li><i class="devicon-supabase-plain colored"></i> <span>Supabase</span></li>
+                    <li><i class="devicon-tensorflow-original colored"></i> <span>TensorFlow</span></li>
+                    <li><i class="devicon-git-plain colored"></i> <span>Git / GitHub</span></li>
+                </ul>
+            </div>
+
+            <!-- Bottom Center: Core Knowledge -->
+            <div class="skills-card scroll-reveal">
+                <h3>Core Knowledge</h3>
+                <ul class="skills-list">
+                    <li><i class="devicon-c-plain colored"></i> <span>Data Structures & Algorithms</span></li>
+                    <li><i class="devicon-apple-original colored"></i> <span>Mobile App Development</span></li>
+                    <li><i class="devicon-googlecloud-plain colored"></i> <span>Cloud Basics</span></li>
+                    <li><i class="devicon-arduino-plain colored"></i> <span>Internet of Things (IoT)</span></li>
+                    <li><i class="devicon-react-original colored"></i> <span>Web Application</span></li>
+                    <li><i class="devicon-vscode-plain colored"></i> <span>Prompt Engineering</span></li>
+                    <li><i class="devicon-jupyter-plain colored"></i> <span>Machine Learning Models</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICES SECTION ==================== -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="section-title text-center scroll-reveal" style="margin-top: 40px;">MY SERVICES</h2>
+            <p class="section-subtitle text-center scroll-reveal" style="margin-bottom: 60px;">What I Can Do</p>
+            <div class="services-grid" style="position: relative;">
+
+                <!-- Center Middle Button -->
+                <div class="center-button-container"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: max-content;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeoUeHyJ0S3HZS_TuUZvpPtHZBQ6sq2flZcRCzbfM3-c70JSQ/viewform?usp=publish-editor"
+                        class="btn-primary glowing-btn" target="_blank" rel="noopener noreferrer"
+                        style="font-size: 1.2rem; padding: 12px 40px;">WANT SERVICE?</a>
+                </div>
+
+                <!-- Service 1 -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon-box">
+                        <i class="devicon-c-plain colored"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">SOFTWARE DEVELOPMENT</h3>
+                        <p class="service-desc">Building efficient, scalable and reliable software solutions customized
+                            to your needs.</p>
+                        <div class="service-tech"><strong>Technologies:</strong> Python, Java, C</div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon-box">
+                        <i class="devicon-android-plain colored"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">MOBILE APP DEVELOPMENT</h3>
+                        <p class="service-desc">Designing and developing user-friendly mobile applications for Android
+                            and cross-platform.</p>
+                        <div class="service-tech"><strong>Technologies:</strong> Flutter, Firebase, Supabase, Android
+                            Studio</div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon-box">
+                        <i class="devicon-html5-plain colored"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">WEB DEVELOPMENT</h3>
+                        <p class="service-desc">Creating responsive and modern websites that deliver a seamless user
+                            experience.</p>
+                        <div class="service-tech"><strong>Technologies:</strong> HTML, CSS, JavaScript</div>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon-box">
+                        <i class="devicon-arduino-plain colored"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">IOT SOLUTIONS</h3>
+                        <p class="service-desc">Developing smart IoT systems with sensor integration and real-time data
+                            monitoring.</p>
+                        <div class="service-tech"><strong>Technologies:</strong> ESP32, Sensor Integration, Embedded
+                            Systems</div>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon-box">
+                        <i class="devicon-tensorflow-original colored"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">AI & MACHINE LEARNING</h3>
+                        <p class="service-desc">Developing intelligent solutions using AI, ML and data-driven
+                            technologies.</p>
+                        <div class="service-tech"><strong>Technologies:</strong> Machine Learning, Deep Learning, TinyML
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon-box">
+                        <i class="devicon-googlecloud-plain colored"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">CLOUD & API INTEGRATION</h3>
+                        <p class="service-desc">Integrating cloud services and APIs to build powerful and scalable
+                            applications.</p>
+                        <div class="service-tech"><strong>Technologies:</strong> Firebase, REST APIs, Cloud Platforms
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section class="projects" id="projects">
+        <div class="projects-container">
+            <h2 class="section-title text-center scroll-reveal">Selected Projects</h2>
+            <div class="asterisk-divider text-center scroll-reveal">*</div>
+            <p class="section-subtitle text-center scroll-reveal">Interactive case studies of major engineering and
+                research projects</p>
+            <div class="projects-layout">
+                <div class="project-item scroll-reveal" data-project="water-system">
+                    <div class="project-image-box">
+                        <div class="project-arch-frame"><img src="abstract_architecture_1.png" alt="Smart Water System"
+                                class="project-img"></div>
+                        <div class="project-hover-overlay"><span>Explore Details</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-number">01</span>
+                        <h3 class="project-title">Smart Water Monitoring System</h3>
+                        <p class="project-desc-short">IoT-based water quality analysis platform with real-time cloud
+                            alerts and offline TinyML model prediction.</p>
+                        <div class="project-tags"><span>IoT</span><span>Flutter</span><span>TinyML</span><span>Cloud
+                                Analytics</span></div>
+                    </div>
+                </div>
+                <div class="project-item scroll-reveal" data-project="tourist-system">
+                    <div class="project-image-box">
+                        <div class="project-arch-frame"><img src="sasikumar_suit_3.jpg" alt="Smart Tourist System"
+                                class="project-img"></div>
+                        <div class="project-hover-overlay"><span>Explore Details</span></div>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-number">02</span>
+                        <h3 class="project-title">Smart Tourist Monitoring System</h3>
+                        <p class="project-desc-short">AI-driven tourist safety ecosystem featuring location tracking,
+                            route optimization, and risk modeling.</p>
+                        <div class="project-tags"><span>AI Models</span><span>Flutter</span><span>Real-Time
+                                Tracking</span><span>Risk Prediction</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close details">&times;</button>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- ==================== ACHIEVEMENTS ==================== -->
+    <section class="achievements" id="achievements">
+        <div class="achievements-container">
+            <div class="achievements-left scroll-reveal">
+                <h2 class="section-title">Education &amp;<br>Achievements</h2>
+                <div class="asterisk-divider">*</div>
+                <div class="education-card">
+                    <span class="edu-date">Oct 2024 - May 2028</span>
+                    <h3>Bachelor of Engineering</h3>
+                    <p class="edu-dept">Computer Science and Engineering</p>
+                    <p class="edu-clg">Vel Tech High Tech Dr. Rangarajan Dr. Sakunthala Engineering College, Chennai</p>
+                    <div class="edu-gpa">CGPA: <span>9.01</span></div>
+                </div>
+            </div>
+            <div class="achievements-right">
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-num">01</div>
+                    <div class="achievement-info">
+                        <h4>Published Research Paper</h4>
+                        <p>Published <em>"AI Powered IoT Platform for Water Quality Monitoring and Weather Condition
+                                Analysis"</em> in the 3rd International Conference on Advances in Artificial
+                            Intelligence and Machine Learning in Big Data Processing.</p>
+                    </div>
+                </div>
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-num">02</div>
+                    <div class="achievement-info">
+                        <h4>Smart India Hackathon (SIH) - 1st Place</h4>
+                        <p>Secured 1st Place in the internal Smart India Hackathon for the design and implementation of
+                            the Smart Tourist Monitoring and Incidence Response System.</p>
+                    </div>
+                </div>
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-num">03</div>
+                    <div class="achievement-info">
+                        <h4>First Project Award</h4>
+                        <p>Awarded the prestigious First Project Award for excellence in designing and implementing an
+                            IoT-based Smart Water Quality Monitoring System.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="thank-you-slide scroll-reveal">
+                <div class="thank-you-title">Thank You</div>
+                <p class="thank-you-sub">Let's connect and build something extraordinary.</p>
+            </div>
+            <div class="contact-form-layout scroll-reveal">
+                <div class="contact-details">
+                    <h3>Contact Info</h3>
+                    <p class="contact-desc">Feel free to reach out for internship opportunities, project collaborations,
+                        or inquiries.</p>
+                    <ul class="contact-info-list">
+                        <li><svg viewBox="0 0 24 24" width="20" height="20">
+                                <path
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                                    fill="currentColor" />
+                            </svg><a href="tel:+917010491215">+91 7010491215</a></li>
+                        <li><svg viewBox="0 0 24 24" width="20" height="20">
+                                <path
+                                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                                    fill="currentColor" />
+                            </svg><a href="mailto:sasikumarldrago@gmail.com">sasikumarldrago@gmail.com</a></li>
+                        <li><svg viewBox="0 0 24 24" width="20" height="20">
+                                <path
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                    fill="currentColor" />
+                            </svg><span>Chennai, Tamil Nadu, India</span></li>
+                    </ul>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group"><input type="text" id="name" required placeholder=" "><label for="name">Your
+                            Name</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="form-group"><input type="email" id="email" required placeholder=" "><label
+                            for="email">Your Email</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="form-group"><textarea id="message" required placeholder=" " rows="4"></textarea><label
+                            for="message">Message</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn"><span>Send Message</span><svg
+                            viewBox="0 0 24 24" width="18" height="18">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor" />
+                        </svg></button>
+                    <div class="form-status" id="formStatus"></div>
+                </form>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sasikumar S. All Rights Reserved.</p>
+                <div class="footer-asterisk">*</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
