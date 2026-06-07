@@ -1,11 +1,13 @@
 # Sasikumar's Portfolio 🚀
 
-Welcome to the repository for my personal developer portfolio! This project is a completely bespoke, highly interactive website built from the ground up using **Vanilla HTML, CSS, and JavaScript**. 
+Welcome to the repository for my personal developer portfolio! This project is a completely bespoke, highly interactive website built from the ground up using **Vanilla HTML, CSS, and JavaScript**. It serves as a comprehensive showcase of my skills, experiences, projects, and achievements as a Software Developer and AI Engineer.
 
-It features a custom **Dark Holographic/HUD Glassmorphism** design language, complete with smooth animations, scroll reveals, and high-performance interactive elements.
+It features a custom **Dark Holographic/HUD Glassmorphism** design language, complete with smooth animations, scroll reveals, and high-performance interactive elements that provide an immersive user experience.
 
 ## 🌟 Live Demo
-You can run this project locally by launching a local development server.
+Check out the live version of my portfolio here: **[https://sasikumar1630portfolio.vercel.app/](https://sasikumar1630portfolio.vercel.app/)**
+
+You can also run this project locally by launching a local development server:
 
 ```bash
 npx serve -l 3000
