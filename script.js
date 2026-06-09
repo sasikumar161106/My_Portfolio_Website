@@ -378,24 +378,53 @@ python main.py</pre>
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
     if (contactForm) {
-        contactForm.addEventListener('submit', e => {
+        contactForm.addEventListener('submit', async e => {
             e.preventDefault();
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
             formStatus.innerHTML = '';
             formStatus.className = 'form-status';
+            
             if (!name || !email || !message) {
                 formStatus.innerHTML = 'Please fill out all fields.';
                 formStatus.classList.add('error');
                 return;
             }
+            
             formStatus.innerHTML = 'Sending message...';
-            setTimeout(() => {
-                formStatus.innerHTML = 'Thank you, Sasikumar will get back to you soon!';
-                formStatus.classList.add('success');
-                contactForm.reset();
-            }, 1200);
+            
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // <-- ENTER YOUR ACCESS KEY HERE
+                        name: name,
+                        email: email,
+                        message: message
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (response.status === 200) {
+                    formStatus.innerHTML = 'Thank you, Sasikumar will get back to you soon!';
+                    formStatus.classList.add('success');
+                    contactForm.reset();
+                } else {
+                    console.log(result);
+                    formStatus.innerHTML = 'Failed to send message. Please check your access key.';
+                    formStatus.classList.add('error');
+                }
+            } catch (error) {
+                console.log(error);
+                formStatus.innerHTML = 'Something went wrong!';
+                formStatus.classList.add('error');
+            }
         });
     }
     /* ==========================================================================
