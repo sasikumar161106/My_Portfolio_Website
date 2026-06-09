@@ -402,7 +402,7 @@ python main.py</pre>
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // <-- ENTER YOUR ACCESS KEY HERE
+                        access_key: '2b1c2f62-7a19-4a35-8ee4-fdbbd946baed',
                         name: name,
                         email: email,
                         message: message
