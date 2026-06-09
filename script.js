@@ -283,6 +283,50 @@ flutter run</pre>
                     </div>
                 </div>
             `
+        },
+        'code-reviewer': {
+            htmlContent: \`
+                <span class="modal-subtitle">AI Agent for Automated Code Review on GitHub</span>
+                <h3>AI-Powered Code Review Assistant</h3>
+                <p>An AI agent that integrates with GitHub, reviews pull requests in real-time, detects potential bugs, security vulnerabilities, code smells, and performance bottlenecks, and then generates actionable inline review comments automatically.</p>
+
+                <h4 style="margin-top:20px;margin-bottom:10px;">✨ Features</h4>
+                <ul class="modal-project-bullets">
+                    <li><strong>Real-time Automated Reviews:</strong> Listens to GitHub webhooks (pull_request events) to review code as soon as a PR is opened or updated.</li>
+                    <li><strong>Deep Code Analysis:</strong> Uses AI to analyze git diffs for bugs, logic errors, security vulnerabilities, code smells, and performance bottlenecks.</li>
+                    <li><strong>One-Click "Suggested Changes":</strong> Provides direct code fixes using GitHub's suggestion syntax, allowing developers to accept fixes with a single click.</li>
+                    <li><strong>Automated PR Summaries &amp; Release Notes:</strong> Generates a high-level summary of what changed, why it matters, and potential impact.</li>
+                    <li><strong>Custom Rules &amp; Configurations:</strong> Enforce custom coding standards, style guides, or ignoring specific files using a repo-level config file.</li>
+                    <li><strong>Context-Aware Reviewing (RAG):</strong> Fetches the full file content (not just the diff) for deeper, architectural understanding before reviewing.</li>
+                    <li><strong>Interactive Chat / Q&amp;A:</strong> Tag the bot or reply to its comments on the PR to ask follow-up questions, request clarifications, or discuss design decisions.</li>
+                </ul>
+
+                <h4 style="margin-top:20px;margin-bottom:10px;">🛠️ Technology Stack</h4>
+                <table style="width:100%; text-align:left; border-collapse: collapse; margin-bottom: 1.5rem;">
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);"><th>Component</th><th>Technology</th></tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"><td style="padding:8px 0;">Backend API</td><td>Python 3.11, FastAPI, Uvicorn</td></tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"><td style="padding:8px 0;">AI Integration</td><td>LiteLLM (Gemini 1.5 Pro, GPT-4o, Claude 3.5 Sonnet)</td></tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"><td style="padding:8px 0;">GitHub Integration</td><td>PyGithub (GitHub App/PAT Support)</td></tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"><td style="padding:8px 0;">Deployment</td><td>Docker, Hugging Face Spaces</td></tr>
+                </table>
+
+                <h4 style="margin-top:20px;margin-bottom:10px;">🚀 Quick Start</h4>
+                <p style="margin-bottom:5px;"><strong>Run Locally</strong></p>
+                <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-bottom: 1.5rem; color: #a5b4fc; border: 1px solid rgba(255,255,255,0.1);">
+git clone https://github.com/sasikumar161106/AI_Powered_Code_Review_Assistant.git
+cd AI_Powered_Code_Review_Assistant
+python -m venv venv
+.\\venv\\Scripts\\activate
+pip install -r requirements.txt
+python main.py</pre>
+
+                <div class="modal-tech-stack">
+                    <h4 style="margin-top:20px;margin-bottom:10px;">Technologies Used</h4>
+                    <div class="modal-tech-list">
+                        <span>Python</span><span>FastAPI</span><span>Docker</span><span>Git</span><span>GitHub</span>
+                    </div>
+                </div>
+            \`
         }
     };
 
