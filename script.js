@@ -285,7 +285,7 @@ flutter run</pre>
             `
         },
         'code-reviewer': {
-            htmlContent: \`
+            htmlContent: `
                 <span class="modal-subtitle">AI Agent for Automated Code Review on GitHub</span>
                 <h3>AI-Powered Code Review Assistant</h3>
                 <p>An AI agent that integrates with GitHub, reviews pull requests in real-time, detects potential bugs, security vulnerabilities, code smells, and performance bottlenecks, and then generates actionable inline review comments automatically.</p>
@@ -326,7 +326,7 @@ python main.py</pre>
                         <span>Python</span><span>FastAPI</span><span>Docker</span><span>Git</span><span>GitHub</span>
                     </div>
                 </div>
-            \`
+            `
         }
     };
 
