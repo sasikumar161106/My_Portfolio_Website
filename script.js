@@ -4,13 +4,30 @@ document.addEventListener('DOMContentLoaded', () => {
        SPLASH SCREEN LOGIC
        ========================================================================== */
     const splashScreen = document.getElementById('splash-screen');
-    if (splashScreen) {
-        setTimeout(() => {
-            splashScreen.classList.add('hidden');
-            setTimeout(() => {
-                splashScreen.style.display = 'none';
-            }, 800); // Wait for the fade-out transition to complete
-        }, 2500); // 2.5 seconds matching the loading bar animation
+    const loadingFill = document.querySelector('.loading-bar-fill');
+    const loadingPct = document.querySelector('.loading-percentage');
+    
+    if (splashScreen && loadingFill && loadingPct) {
+        let progress = 0;
+        const duration = 2500; // 2.5 seconds total
+        const intervalTime = 30; // update roughly every 30ms
+        const step = 100 / (duration / intervalTime);
+        
+        const loaderInterval = setInterval(() => {
+            progress += step;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loaderInterval);
+                setTimeout(() => {
+                    splashScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                    }, 800);
+                }, 300); // slight pause at 100%
+            }
+            loadingFill.style.width = `${progress}%`;
+            loadingPct.textContent = `${Math.floor(progress)}%`;
+        }, intervalTime);
     }
 
     /* ==========================================================================

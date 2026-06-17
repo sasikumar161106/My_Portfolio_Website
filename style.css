@@ -60,11 +60,9 @@ ul { list-style: none; }
    ========================================================================== */
 #splash-screen {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #050505;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background-color: #030303;
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -81,81 +79,169 @@ ul { list-style: none; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    width: 100%;
 }
 
-.tech-logo {
-    font-family: var(--font-display);
-    font-size: 5rem;
-    font-weight: 700;
-    color: var(--color-white);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    letter-spacing: 2px;
-}
-
-.tech-logo .bracket {
-    color: var(--color-accent);
-    opacity: 0.8;
-    animation: pulse 1.5s infinite alternate;
-}
-
-.tech-logo .sk-text {
+/* Cyber Logo Container */
+.cyber-logo-wrapper {
     position: relative;
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
-    background: linear-gradient(to top, var(--color-accent) 50%, transparent 50%);
-    background-size: 100% 200%;
-    background-position: 0 0;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: fillText 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.4));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
-.tech-logo .sk-text::after {
+/* Circuit Lines (Left and Right) */
+.circuit-line {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    width: 25vw;
+    max-width: 300px;
+}
+.circuit-line.left { right: 50%; margin-right: 120px; }
+.circuit-line.right { left: 50%; margin-left: 120px; }
+
+/* The Glowing Circles */
+.cyber-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+/* Outer thin ring */
+.cyber-circle::before {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top-color: rgba(255, 255, 255, 0.8);
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+    animation: rotateSlow 8s linear infinite;
+}
+
+/* Inner thick glowing ring */
+.cyber-circle-inner {
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Dashed inner ring */
+.cyber-circle-dashed {
+    position: absolute;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    animation: rotateFast 10s linear infinite reverse;
+}
+
+/* SK Text inside */
+.cyber-sk-text {
+    position: relative;
+    z-index: 10;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+    font-style: italic;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    letter-spacing: -2px;
+}
+
+/* IN TECH Text */
+.in-tech-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
     width: 100%;
-    height: 3px;
-    background: var(--color-accent);
-    box-shadow: 0 0 10px var(--color-accent);
-    animation: scanline 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    max-width: 400px;
+    justify-content: center;
+}
+.in-tech-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    position: relative;
+}
+.in-tech-line::after {
+    content: '';
+    position: absolute;
+    width: 3px; height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    top: -1px;
+}
+.in-tech-line.left::after { right: 0; }
+.in-tech-line.right::after { left: 0; }
+
+.in-tech-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    color: #fff;
+    font-weight: 300;
+    white-space: nowrap;
 }
 
-.loading-text {
-    font-family: var(--font-main);
-    font-size: 0.75rem;
+/* Loading Area */
+.loading-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+.loading-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
     letter-spacing: 4px;
-    color: var(--color-gray-500);
+    color: #aaa;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    animation: blinkText 1s infinite;
+    width: 100%;
+    text-align: left;
+}
+.loading-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+.loading-bar-outline {
+    flex: 1;
+    height: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1px;
+    position: relative;
+}
+.loading-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    transition: width 0.1s linear;
+}
+.loading-percentage {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    color: #aaa;
+    min-width: 35px;
 }
 
-@keyframes fillText {
-    0% { background-position: 0 0; }
-    40% { background-position: 0 40%; }
-    60% { background-position: 0 60%; }
-    100% { background-position: 0 100%; -webkit-text-stroke: 0px; filter: drop-shadow(0 0 25px rgba(34, 197, 94, 0.8)); }
-}
-
-@keyframes pulse {
-    0% { opacity: 0.4; transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1.05); }
-}
-
-@keyframes scanline {
-    0% { bottom: 0%; opacity: 1; }
-    100% { bottom: 100%; opacity: 0; }
-}
-
-@keyframes blinkText {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-}
+@keyframes rotateSlow { 100% { transform: rotate(360deg); } }
+@keyframes rotateFast { 100% { transform: rotate(360deg); } }
 
 /* ==========================================================================
    HERO SECTION — Sample Design Match
