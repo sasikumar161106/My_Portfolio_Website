@@ -433,8 +433,8 @@ ul { list-style: none; }
 
 .name-anim-wrapper {
     display: inline-flex;
-    justify-content: center;
-    width: 100%;
+    justify-content: flex-start;
+    width: auto;
 }
 
 .heading-anim-wrapper {
