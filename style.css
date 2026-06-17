@@ -102,9 +102,16 @@ ul { list-style: none; }
 }
 
 .tech-logo .sk-text {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     position: relative;
-    overflow: hidden;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to top, var(--color-accent) 50%, transparent 50%);
+    background-size: 100% 200%;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: fillText 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    filter: drop-shadow(0 0 15px rgba(34, 197, 94, 0.4));
 }
 
 .tech-logo .sk-text::after {
@@ -116,24 +123,7 @@ ul { list-style: none; }
     height: 3px;
     background: var(--color-accent);
     box-shadow: 0 0 10px var(--color-accent);
-    animation: scanline 2s linear infinite;
-}
-
-.loading-bar-container {
-    width: 250px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-}
-
-.loading-bar {
-    width: 0%;
-    height: 100%;
-    background: var(--color-accent);
-    box-shadow: 0 0 10px var(--color-accent);
-    animation: loadProgress 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: scanline 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .loading-text {
@@ -145,11 +135,11 @@ ul { list-style: none; }
     animation: blinkText 1s infinite;
 }
 
-@keyframes loadProgress {
-    0% { width: 0%; }
-    40% { width: 40%; }
-    60% { width: 60%; }
-    100% { width: 100%; }
+@keyframes fillText {
+    0% { background-position: 0 0; }
+    40% { background-position: 0 40%; }
+    60% { background-position: 0 60%; }
+    100% { background-position: 0 100%; -webkit-text-stroke: 0px; filter: drop-shadow(0 0 25px rgba(34, 197, 94, 0.8)); }
 }
 
 @keyframes pulse {
@@ -158,8 +148,8 @@ ul { list-style: none; }
 }
 
 @keyframes scanline {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% { bottom: 0%; opacity: 1; }
+    100% { bottom: 100%; opacity: 0; }
 }
 
 @keyframes blinkText {
