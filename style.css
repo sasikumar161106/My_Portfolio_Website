@@ -438,31 +438,34 @@ ul { list-style: none; }
 }
 
 .heading-anim-wrapper {
+    position: relative;
     display: inline-flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
 }
 
-.glowing-line {
-    display: inline-block;
+.glowing-line-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     width: 3px;
-    height: 1em;
+    height: 1.1em;
     background: #fff;
     box-shadow: 0 0 10px #fff, 0 0 20px #fff;
-    margin-right: 10px;
     border-radius: 2px;
-    transform: translateY(-2px);
-    vertical-align: bottom;
-    animation: linePulse 2s infinite;
+    z-index: 5;
+    animation: lineCenterFade 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-@keyframes linePulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 10px #fff, 0 0 20px #fff; }
-    50% { opacity: 0.5; box-shadow: 0 0 5px #fff, 0 0 10px #fff; }
+@keyframes lineCenterFade {
+    0%, 15% { opacity: 1; box-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+    25%, 85% { opacity: 0; box-shadow: none; }
+    95%, 100% { opacity: 1; box-shadow: 0 0 10px #fff, 0 0 20px #fff; }
 }
 
-.expand-heading {
-    display: inline-block;
+.expand-heading-center {
+    display: inline-flex;
+    justify-content: center;
     max-width: 0;
     overflow: hidden;
     vertical-align: bottom;
