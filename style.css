@@ -466,34 +466,28 @@ ul { list-style: none; }
 .expand-heading-center {
     display: inline-flex;
     justify-content: center;
-    max-width: 0;
-    overflow: hidden;
     vertical-align: bottom;
-    opacity: 0;
     white-space: pre;
     animation: expandHeadingAnim 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes expandHeadingAnim {
-    0%, 15% { max-width: 0; opacity: 0; }
-    25%, 85% { max-width: 1200px; opacity: 1; }
-    95%, 100% { max-width: 0; opacity: 0; }
+    0%, 15% { letter-spacing: -0.5em; opacity: 0; filter: blur(5px); transform: scaleX(0.8); }
+    30%, 85% { letter-spacing: normal; opacity: 1; filter: blur(0); transform: scaleX(1); }
+    95%, 100% { letter-spacing: -0.5em; opacity: 0; filter: blur(5px); transform: scaleX(0.8); }
 }
 
 .expand-text {
     display: inline-block;
-    max-width: 0;
-    overflow: hidden;
     vertical-align: bottom;
-    opacity: 0;
     white-space: nowrap;
     animation: expandName 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes expandName {
-    0%, 15% { max-width: 0; opacity: 0; }
-    25%, 85% { max-width: 800px; opacity: 1; }
-    95%, 100% { max-width: 0; opacity: 0; }
+    0%, 15% { letter-spacing: -0.5em; opacity: 0; filter: blur(5px); transform: scaleX(0.8); }
+    30%, 85% { letter-spacing: normal; opacity: 1; filter: blur(0); transform: scaleX(1); }
+    95%, 100% { letter-spacing: -0.5em; opacity: 0; filter: blur(5px); transform: scaleX(0.8); }
 }
 
 /* Roles */
