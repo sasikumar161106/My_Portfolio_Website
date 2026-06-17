@@ -93,17 +93,47 @@ ul { list-style: none; }
 }
 
 /* Circuit Lines (Left and Right) */
+/* Circuit Lines (Left and Right) with Power Flow */
 .circuit-line {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    height: 1px;
-    background: rgba(255, 255, 255, 0.4);
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.15);
     width: 25vw;
     max-width: 300px;
+    overflow: hidden;
 }
 .circuit-line.left { right: 50%; margin-right: 120px; }
 .circuit-line.right { left: 50%; margin-left: 120px; }
+
+.circuit-line.left::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 60px; height: 100%;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    box-shadow: 0 0 15px #fff;
+    animation: powerFlowLeft 1.5s linear infinite;
+}
+.circuit-line.right::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 100%;
+    background: linear-gradient(-90deg, transparent, #fff, transparent);
+    box-shadow: 0 0 15px #fff;
+    animation: powerFlowRight 1.5s linear infinite;
+}
+
+@keyframes powerFlowLeft {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(400px); }
+}
+@keyframes powerFlowRight {
+    0% { transform: translateX(100px); }
+    100% { transform: translateX(-400px); }
+}
 
 /* The Glowing Circles */
 .cyber-circle {
@@ -114,6 +144,44 @@ ul { list-style: none; }
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+}
+
+/* Power passing around the logo */
+.cyber-circle-glow {
+    position: absolute;
+    width: 216px; height: 216px;
+    border-radius: 50%;
+    z-index: 5;
+}
+.cyber-circle-glow.glow-1 {
+    animation: spinGlow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.cyber-circle-glow.glow-2 {
+    animation: spinGlowReverse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation-delay: 1s;
+}
+.cyber-circle-glow::after {
+    content: '';
+    position: absolute;
+    top: -3px; left: 50%;
+    transform: translateX(-50%);
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 8px #fff, 0 0 40px 15px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes spinGlow {
+    0% { transform: rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: rotate(360deg); opacity: 0; }
+}
+@keyframes spinGlowReverse {
+    0% { transform: rotate(360deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: rotate(0deg); opacity: 0; }
 }
 
 /* Outer thin ring */
