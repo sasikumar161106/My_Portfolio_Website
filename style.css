@@ -347,6 +347,23 @@ ul { list-style: none; }
     -webkit-text-stroke: 1.5px rgba(255,255,255,0.8);
 }
 
+.expand-text {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    vertical-align: bottom;
+    opacity: 0;
+    white-space: nowrap;
+    animation: expandName 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: 3s; /* Waits for splash screen */
+}
+
+@keyframes expandName {
+    0% { max-width: 0; opacity: 0; }
+    30% { opacity: 1; }
+    100% { max-width: 400px; opacity: 1; }
+}
+
 /* Roles */
 .hero-roles {
     font-family: var(--font-display);
