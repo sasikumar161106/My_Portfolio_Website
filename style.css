@@ -443,6 +443,24 @@ ul { list-style: none; }
     align-items: baseline;
 }
 
+.glowing-line {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: #fff;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+    margin-right: 10px;
+    border-radius: 2px;
+    transform: translateY(-2px);
+    vertical-align: bottom;
+    animation: linePulse 2s infinite;
+}
+
+@keyframes linePulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+    50% { opacity: 0.5; box-shadow: 0 0 5px #fff, 0 0 10px #fff; }
+}
+
 .expand-heading {
     display: inline-block;
     max-width: 0;
