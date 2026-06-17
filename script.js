@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================================================
+       SPLASH SCREEN LOGIC
+       ========================================================================== */
+    const splashScreen = document.getElementById('splash-screen');
+    if (splashScreen) {
+        setTimeout(() => {
+            splashScreen.classList.add('hidden');
+            setTimeout(() => {
+                splashScreen.style.display = 'none';
+            }, 800); // Wait for the fade-out transition to complete
+        }, 2500); // 2.5 seconds matching the loading bar animation
+    }
+
+    /* ==========================================================================
        MOBILE NAVIGATION TOGGLE
        ========================================================================== */
     const menuToggle = document.querySelector('.mobile-menu-toggle');
