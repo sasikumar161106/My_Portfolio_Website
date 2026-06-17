@@ -1,57 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ==========================================================================
-       SPLASH SCREEN LOGIC
-       ========================================================================== */
-    const splashScreen = document.getElementById('splash-screen');
-    const loadingFill = document.querySelector('.loading-bar-fill');
-    const loadingPct = document.querySelector('.loading-percentage');
-    
-    if (splashScreen && loadingFill && loadingPct) {
-        let progress = 0;
-        const duration = 2500; // 2.5 seconds total
-        const intervalTime = 30; // update roughly every 30ms
-        const step = 100 / (duration / intervalTime);
-        
-        const loadingLabel = document.querySelector('.loading-label');
-        const loadingTexts = [
-            "INITIALIZING KERNEL...",
-            "COMPILING ASSETS...",
-            "ESTABLISHING SECURE CONNECTION...",
-            "DECRYPTING MODULES...",
-            "LOADING UI...",
-            "ACCESS GRANTED"
-        ];
-        let textIndex = 0;
-        if(loadingLabel) loadingLabel.innerText = loadingTexts[0];
-
-        const loaderInterval = setInterval(() => {
-            progress += step;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(loaderInterval);
-                if(loadingLabel) loadingLabel.innerText = "ACCESS GRANTED";
-                setTimeout(() => {
-                    splashScreen.classList.add('hidden');
-                    setTimeout(() => {
-                        splashScreen.style.display = 'none';
-                    }, 800);
-                }, 300); // slight pause at 100%
-            }
-            
-            // Cycle loading texts based on progress
-            if (progress < 100 && loadingLabel) {
-                const expectedIndex = Math.floor((progress / 100) * loadingTexts.length);
-                if (expectedIndex > textIndex && expectedIndex < loadingTexts.length) {
-                    textIndex = expectedIndex;
-                    loadingLabel.innerText = loadingTexts[textIndex];
-                }
-            }
-
-            loadingFill.style.width = `${progress}%`;
-            loadingPct.textContent = `${Math.floor(progress)}%`;
-        }, intervalTime);
-    }
 
     /* ==========================================================================
        MOBILE NAVIGATION TOGGLE
