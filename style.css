@@ -433,8 +433,8 @@ ul { list-style: none; }
 
 .name-anim-wrapper {
     display: inline-flex;
-    justify-content: flex-start;
-    width: auto;
+    justify-content: center;
+    width: 100%;
 }
 
 .heading-anim-wrapper {
@@ -455,7 +455,7 @@ ul { list-style: none; }
 
 @keyframes expandHeadingAnim {
     0%, 15% { max-width: 0; opacity: 0; }
-    25%, 85% { max-width: 600px; opacity: 1; }
+    25%, 85% { max-width: 1200px; opacity: 1; }
     95%, 100% { max-width: 0; opacity: 0; }
 }
 
@@ -471,7 +471,7 @@ ul { list-style: none; }
 
 @keyframes expandName {
     0%, 15% { max-width: 0; opacity: 0; }
-    25%, 85% { max-width: 300px; opacity: 1; }
+    25%, 85% { max-width: 800px; opacity: 1; }
     95%, 100% { max-width: 0; opacity: 0; }
 }
 
