@@ -419,6 +419,28 @@ ul { list-style: none; }
     width: 100%;
 }
 
+.heading-anim-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.expand-heading {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    vertical-align: bottom;
+    opacity: 0;
+    white-space: pre;
+    animation: expandHeadingAnim 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes expandHeadingAnim {
+    0%, 15% { max-width: 0; opacity: 0; }
+    25%, 85% { max-width: 600px; opacity: 1; }
+    95%, 100% { max-width: 0; opacity: 0; }
+}
+
 .expand-text {
     display: inline-block;
     max-width: 0;
