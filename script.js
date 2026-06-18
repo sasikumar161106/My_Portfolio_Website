@@ -65,6 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================================================
+       HEADING ANIMATION OBSERVER
+       ========================================================================== */
+    const headingWrappers = document.querySelectorAll('.heading-anim-wrapper, .name-anim-wrapper');
+    const headingObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const glowingLine = entry.target.querySelector('.glowing-line-center');
+                const expandHeading = entry.target.querySelector('.expand-heading-center');
+                const expandTexts = entry.target.querySelectorAll('.expand-text');
+                
+                if (glowingLine) glowingLine.classList.add('start-anim');
+                if (expandHeading) expandHeading.classList.add('start-anim');
+                expandTexts.forEach(el => el.classList.add('start-anim'));
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+    headingWrappers.forEach(el => headingObserver.observe(el));
+
+
+    /* ==========================================================================
        PROJECT MODAL
        ========================================================================== */
     const projectData = {
