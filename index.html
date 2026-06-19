@@ -52,9 +52,15 @@
 
     <!-- ==================== HERO SECTION ==================== -->
     <section class="hero" id="hero">
-        <!-- Background Image (Right Side) -->
-        <div class="hero-image-side">
-            <img src="hero_section_template.png" alt="Sasikumar with AI Robot" class="hero-img">
+        <!-- Background Image (Right Side) — Proximity Reveal -->
+        <div class="hero-image-side" id="heroImageSide">
+            <!-- Fixed-aspect-ratio wrapper (577:433) keeps both images aligned at any scale -->
+            <div class="hero-reveal-container" id="heroRevealContainer">
+                <!-- Bottom layer: normal portrait (always visible) -->
+                <img src="hero_section_template.png" alt="Sasikumar — Portrait" class="hero-img hero-reveal__portrait">
+                <!-- Top layer: Iron Man suit (hidden by default, fades in on cursor proximity) -->
+                <img src="iron_man_suit.png" alt="Iron Man Suit Overlay" class="hero-reveal__suit" id="heroSuitLayer">
+            </div>
             <div class="hero-img-fade-left"></div>
             <div class="hero-img-fade-bottom"></div>
         </div>
@@ -720,6 +726,7 @@
         </div>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
 

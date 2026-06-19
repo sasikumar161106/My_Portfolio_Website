@@ -87,6 +87,57 @@ ul { list-style: none; }
     max-width: none;
 }
 
+/* ---- Proximity Reveal: Responsive Container ---- */
+.hero-reveal-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* The portrait original aspect ratio is 577x433 */
+    aspect-ratio: 577 / 433;
+    overflow: hidden;
+    /* Center it inside the hero-image-side if needed, 
+       though the container is set to 100% height already. 
+       We'll let it fill width and adjust height based on aspect ratio. */
+}
+
+/* Bottom layer: normal portrait — always visible */
+.hero-reveal__portrait {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+/* Top layer: Iron Man suit — positioned using exact percentages based on 577x433 */
+.hero-reveal__suit {
+    position: absolute;
+    /* 71 / 577 ≈ 12.3% */
+    left: 12.3%;
+    /* 40 / 433 ≈ 9.24% */
+    top: 9.24%;
+    /* 393 / 577 ≈ 68.11% */
+    width: 68.11%;
+    /* 393 / 433 ≈ 90.76% */
+    height: 90.76%;
+    object-fit: contain;
+    z-index: 2;
+    opacity: 0; /* Hidden by default, revealed by JS */
+    /* Hardware acceleration for smoother fade */
+    will-change: opacity;
+}
+
+/* Touch / no-hover devices: ensure suit stays hidden */
+@media (hover: none) {
+    .hero-reveal__suit { display: none !important; }
+}
+
+/* Reduced motion: skip animation */
+@media (prefers-reduced-motion: reduce) {
+    .hero-reveal__suit { display: none !important; }
+}
+
 .hero-img-fade-left {
     position: absolute;
     top: 0; left: 0;
