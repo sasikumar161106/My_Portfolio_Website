@@ -492,4 +492,100 @@ python main.py</pre>
             if (e.key === 'Escape' && certLightbox.classList.contains('open')) closeLightbox();
         });
     }
+
+
+    /* ==========================================================================
+       HERO SPOTLIGHT REVEAL — Cursor-driven mask animation (GSAP)
+       ========================================================================== */
+    (function initSpotlightReveal() {
+        // Bail out on touch devices or if user prefers reduced motion
+        const hasHover = window.matchMedia('(hover: hover)').matches;
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!hasHover || prefersReduced) return;
+
+        const heroSection = document.getElementById('heroImageSide');
+        const suitLayer = document.getElementById('heroSuitLayer');
+        if (!heroSection || !suitLayer) return;
+
+        // Guard: make sure GSAP loaded
+        if (typeof gsap === 'undefined') {
+            console.warn('[Spotlight] GSAP not found — skipping spotlight reveal.');
+            return;
+        }
+
+        // ---- Mutable ref object (no React state, no re-renders) ----
+        // alpha: 1 = suit fully solid (no hole). 0 = hole fully open (portrait visible)
+        // size : spotlight radius in px
+        const spot = {
+            x: heroSection.offsetWidth / 2,
+            y: heroSection.offsetHeight / 2,
+            alpha: 1,   // start fully solid — suit covers everything
+            size: 200    // default small radius
+        };
+
+        // ---- Smooth x/y tracking via gsap.quickTo ----
+        const qx = gsap.quickTo(spot, 'x', { duration: 0.6, ease: 'power3.out' });
+        const qy = gsap.quickTo(spot, 'y', { duration: 0.6, ease: 'power3.out' });
+
+        // ---- Per-frame mask recomputation via GSAP ticker ----
+        // The radial-gradient uses 4 color stops for a soft feathered edge:
+        //   0%   — innermost: rgba(0,0,0, alpha)           → fully transparent when alpha=0 (hole)
+        //   30%  — inner ring: alpha + (1-alpha)*0.4        → partial fill
+        //   60%  — outer ring: alpha + (1-alpha)*0.8        → nearly solid
+        //   100% — edge:       rgba(0,0,0, 1)               → always solid (suit visible outside circle)
+        function updateMask() {
+            const a = spot.alpha;
+            const r = spot.size;
+            const s0 = a;                        // innermost — 0 when hole is open
+            const s1 = a + (1 - a) * 0.4;       // 30% stop
+            const s2 = a + (1 - a) * 0.8;       // 60% stop
+            const s3 = 1;                        // 100% — always solid
+
+            const mask = `radial-gradient(circle ${r}px at ${spot.x}px ${spot.y}px, `
+                + `rgba(0,0,0,${s0}) 0%, `
+                + `rgba(0,0,0,${s1}) 30%, `
+                + `rgba(0,0,0,${s2}) 60%, `
+                + `rgba(0,0,0,${s3}) 100%)`;
+
+            suitLayer.style.webkitMaskImage = mask;
+            suitLayer.style.maskImage = mask;
+        }
+
+        gsap.ticker.add(updateMask);
+
+        // ---- Event handlers on the hero image container ----
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            qx(e.clientX - rect.left);
+            qy(e.clientY - rect.top);
+        });
+
+        heroSection.addEventListener('mouseenter', () => {
+            // Punch the hole open: alpha → 0, size → 450
+            gsap.to(spot, {
+                alpha: 0,
+                size: 450,
+                duration: 0.8,
+                ease: 'power2.out',
+                overwrite: 'auto'
+            });
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            // Seal the hole shut: alpha → 1, size → 200 (slow cinematic dissolve)
+            gsap.to(spot, {
+                alpha: 1,
+                size: 200,
+                duration: 1.5,
+                ease: 'power3.inOut',
+                overwrite: 'auto'
+            });
+        });
+
+        // ---- Cleanup on page unload to avoid memory leaks ----
+        window.addEventListener('beforeunload', () => {
+            gsap.ticker.remove(updateMask);
+        });
+    })();
 });
