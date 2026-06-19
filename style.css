@@ -87,40 +87,6 @@ ul { list-style: none; }
     max-width: none;
 }
 
-/* ---- Spotlight Reveal: stacked image layers ---- */
-.hero-img--normal,
-.hero-img--suit {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    max-width: none;
-}
-
-/* Bottom layer: normal portrait — always visible beneath the suit */
-.hero-img--normal {
-    z-index: 10;
-}
-
-/* Top layer: Iron Man suit — masked by the spotlight JS */
-.hero-img--suit {
-    z-index: 15;
-    /* Ensure mask compositing works in all browsers */
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-}
-
-/* Touch / no-hover devices: just show normal portrait, hide suit */
-@media (hover: none) {
-    .hero-img--suit { display: none; }
-}
-
-/* Reduced motion: same — skip the spotlight entirely */
-@media (prefers-reduced-motion: reduce) {
-    .hero-img--suit { display: none; }
-}
-
 .hero-img-fade-left {
     position: absolute;
     top: 0; left: 0;
