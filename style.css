@@ -97,7 +97,7 @@ ul { list-style: none; }
     /* Mirrors .hero-img's object-position so the suit aligns with the portrait */
     object-position: center top;
     /* Nudge and scale the suit to align its subject with the portrait's subject */
-    transform: scale(0.85) translate(3%, 4%);
+    transform: scale(0.85) translate(3%, 6.5%);
     transform-origin: center top;
     z-index: 1; /* above portrait, below fade overlays (z-index:2) */
     pointer-events: none;
