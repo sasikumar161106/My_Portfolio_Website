@@ -96,13 +96,15 @@ ul { list-style: none; }
     object-fit: cover;
     /* Mirrors .hero-img's object-position so the suit aligns with the portrait */
     object-position: center top;
+    /* Nudge and scale the suit to align its subject with the portrait's subject */
+    transform: scale(1.15) translateY(5%);
     z-index: 1; /* above portrait, below fade overlays (z-index:2) */
     pointer-events: none;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     /* Fully hidden by default — JS drives the radial-gradient mask */
-    -webkit-mask-image: radial-gradient(circle 0px at 0px 0px, black 0%, black 60%, transparent 100%);
-    mask-image: radial-gradient(circle 0px at 0px 0px, black 0%, black 60%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle 0px at 0px 0px, black 0%, black 55%, rgba(0,0,0,0.3) 75%, transparent 100%);
+    mask-image: radial-gradient(circle 0px at 0px 0px, black 0%, black 55%, rgba(0,0,0,0.3) 75%, transparent 100%);
 }
 
 /* Touch / no-hover devices: keep suit hidden, portrait-only */

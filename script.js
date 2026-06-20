@@ -532,36 +532,34 @@ python main.py</pre>
         if (useGsap) {
             gsapQuickX = gsap.quickTo(state, 'x', { duration: 0.6, ease: 'power3.out' });
             gsapQuickY = gsap.quickTo(state, 'y', { duration: 0.6, ease: 'power3.out' });
+            // Crucial: ensure mask updates every GSAP frame so it doesn't get stuck
+            gsap.ticker.add(applyMask);
         }
 
         /* ---- Apply mask each frame ---- */
         function applyMask() {
             const r = state.radius;
-            const val = 'radial-gradient(circle ' + r + 'px at ' + state.x + 'px ' + state.y + 'px, black 0%, black 60%, transparent 100%)';
+            const val = 'radial-gradient(circle ' + r + 'px at ' + state.x + 'px ' + state.y + 'px, black 0%, black 55%, rgba(0,0,0,0.3) 75%, transparent 100%)';
             suitEl.style.webkitMaskImage = val;
             suitEl.style.maskImage = val;
         }
 
-        /* ---- Animation loop ---- */
+        /* ---- Animation loop (Fallback for no-GSAP) ---- */
         function tick() {
-            // Lerp position (only when not using GSAP for position)
-            if (!useGsap) {
-                state.x += (targetX - state.x) * POS_LERP;
-                state.y += (targetY - state.y) * POS_LERP;
-            }
+            if (useGsap) return; // GSAP handles animation via ticker
 
-            // Lerp radius — use different speeds for opening vs closing
+            // Lerp position
+            state.x += (targetX - state.x) * POS_LERP;
+            state.y += (targetY - state.y) * POS_LERP;
+
+            // Lerp radius
             const rLerp = targetRadius > state.radius ? RADIUS_LERP_OPEN : RADIUS_LERP_CLOSE;
             state.radius += (targetRadius - state.radius) * rLerp;
 
-            // Snap to 0 when closing and nearly there
-            if (targetRadius === 0 && state.radius < 0.5) {
-                state.radius = 0;
-            }
+            if (targetRadius === 0 && state.radius < 0.5) state.radius = 0;
 
             applyMask();
 
-            // Keep animating if values haven't settled
             const posDelta = Math.abs(state.x - targetX) + Math.abs(state.y - targetY);
             const rDelta = Math.abs(state.radius - targetRadius);
 
@@ -573,7 +571,7 @@ python main.py</pre>
         }
 
         function ensureLoop() {
-            if (rafId === null) {
+            if (!useGsap && rafId === null) {
                 rafId = requestAnimationFrame(tick);
             }
         }
@@ -587,60 +585,54 @@ python main.py</pre>
             if (useGsap) {
                 gsapQuickX(targetX);
                 gsapQuickY(targetY);
+            } else {
+                ensureLoop();
             }
-
-            ensureLoop();
         }, { passive: true });
 
         /* ---- Panel enter/leave: animate radius ---- */
         panel.addEventListener('mouseenter', function (e) {
             isInsidePanel = true;
 
-            // Jump position to cursor immediately on enter to avoid
-            // the circle lerping across the panel from a stale position
             var rect = panel.getBoundingClientRect();
             var enterX = e.clientX - rect.left;
             var enterY = e.clientY - rect.top;
+            
+            // Jump to prevent sliding across screen
             state.x = enterX;
             state.y = enterY;
             targetX = enterX;
             targetY = enterY;
+            
             if (useGsap) {
                 gsapQuickX(enterX);
                 gsapQuickY(enterY);
-            }
-
-            // Open the hole
-            if (useGsap) {
                 gsap.killTweensOf(state, 'radius');
                 gsap.to(state, {
                     radius: MAX_RADIUS,
                     duration: 0.7,
-                    ease: 'power2.out',
-                    onUpdate: ensureLoop
+                    ease: 'power2.out'
                 });
             } else {
                 targetRadius = MAX_RADIUS;
+                ensureLoop();
             }
-            ensureLoop();
         });
 
         panel.addEventListener('mouseleave', function () {
             isInsidePanel = false;
 
-            // Close the hole
             if (useGsap) {
                 gsap.killTweensOf(state, 'radius');
                 gsap.to(state, {
                     radius: 0,
                     duration: 1.0,
-                    ease: 'power2.inOut',
-                    onUpdate: ensureLoop
+                    ease: 'power2.inOut'
                 });
             } else {
                 targetRadius = 0;
+                ensureLoop();
             }
-            ensureLoop();
         });
     })();
 
