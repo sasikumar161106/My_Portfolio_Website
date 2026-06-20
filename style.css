@@ -73,7 +73,7 @@ ul { list-style: none; }
 .hero-image-side {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -5%;
     width: 55%;
     height: 100%;
     z-index: 1;
