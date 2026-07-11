@@ -493,4 +493,51 @@ python main.py</pre>
         });
     }
 
+    /* ==========================================================================
+       MAGNETIC/RISING CURSOR MOTION FOR HERO BUTTONS
+       ========================================================================== */
+    (function initMagneticButtons() {
+        // Respect accessibility: skip on touch devices or reduced-motion
+        if (!window.matchMedia('(hover: hover)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        
+        // Select targeted buttons: Available badge (internship), view projects, resume download
+        const buttons = document.querySelectorAll('.hero-available, .hero-cta .cta-btn');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                // Get cursor position relative to the button's center
+                const x = e.clientX - (rect.left + rect.width / 2);
+                const y = e.clientY - (rect.top + rect.height / 2);
+                
+                // Animate the button towards the cursor (magnetic pull) and slightly scale up & rise
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(btn, {
+                        x: x * 0.35,
+                        y: y * 0.35 - 3, // slightly offsets upward for "rising" motion
+                        scale: 1.04,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    });
+                }
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                // Return to original position and scale
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(btn, {
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "elastic.out(1.1, 0.4)",
+                        overwrite: "auto"
+                    });
+                }
+            });
+        });
+    })();
+
 });

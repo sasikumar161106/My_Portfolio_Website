@@ -280,7 +280,7 @@ ul { list-style: none; }
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 6px;
     color: var(--color-white);
-    transition: var(--transition-fast);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
     cursor: pointer;
     background: rgba(255,255,255,0.03);
 }
@@ -290,8 +290,9 @@ ul { list-style: none; }
 }
 
 .cta-btn:hover {
-    border-color: rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
 }
 
 .cta-btn-outline {
@@ -380,6 +381,14 @@ ul { list-style: none; }
     color: rgba(255,255,255,0.6);
     width: fit-content;
     background: rgba(255,255,255,0.02);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.hero-available:hover {
+    border-color: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.95);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.1);
 }
 
 .available-dot {
