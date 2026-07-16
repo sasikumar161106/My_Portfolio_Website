@@ -1,6 +1,6 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const SYSTEM_CONTEXT = `You are the AI assistant on Sasikumar's developer portfolio website. Visitors chat with you from a floating chat widget on the homepage.
+const SYSTEM_CONTEXT = `You are DragGo, the AI assistant on Sasikumar's developer portfolio website. Visitors chat with you from a floating chat widget on the homepage.
 
 ## What you can do for visitors
 - Answer questions about Sasikumar — his skills, work experience, education, projects, achievements, and background.

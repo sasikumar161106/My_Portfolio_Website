@@ -734,41 +734,69 @@
 
     <!-- Chat Window -->
     <div class="chatbot-window" id="chatbotWindow">
+        <!-- Splash Screen -->
+        <div class="chatbot-splash" id="chatbotSplash">
+            <div class="chatbot-splash-content">
+                <div class="chatbot-splash-logo">DG</div>
+                <h3>Hi bro, I am DragGo</h3>
+                <p>Sasikumar's AI portfolio assistant. I am here to help you. You can ask me anything about Sasikumar's skills, projects, and experience!</p>
+                <button class="hud-btn" id="startChatBtn">Start Chatting</button>
+            </div>
+        </div>
+
         <div class="chatbot-header">
             <div class="chatbot-header-left">
                 <span class="chatbot-status-dot"></span>
                 <div>
-                    <h4 class="chatbot-header-title">Sasikumar's AI</h4>
-                    <span class="chatbot-header-subtitle">Powered by Gemini 2.5 Flash</span>
+                    <h4 class="chatbot-header-title">DragGo</h4>
+                    <span class="chatbot-header-subtitle">Sasikumar's AI</span>
                 </div>
             </div>
-            <button class="chatbot-header-close" id="chatbotClose" aria-label="Close chat">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-        </div>
-
-        <div class="chatbot-messages" id="chatbotMessages">
-            <div class="chatbot-welcome">
-                <p>👋 Hey! I'm Sasikumar's AI assistant. Ask me anything about his projects, skills, or experience!</p>
+            <div class="chatbot-header-right">
+                <button class="chatbot-header-btn" id="chatbotNewChat" aria-label="New chat" title="New Chat">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+                <button class="chatbot-header-btn" id="chatbotClose" aria-label="Close chat" title="Close">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
             </div>
         </div>
 
-        <div class="chatbot-suggestions" id="chatbotSuggestions">
-            <button class="chatbot-chip" data-message="What projects has Sasikumar built?">🚀 Projects</button>
-            <button class="chatbot-chip" data-message="What are Sasikumar's technical skills?">💡 Skills</button>
-            <button class="chatbot-chip" data-message="Tell me about Sasikumar's achievements">🏆 Achievements</button>
-            <button class="chatbot-chip" data-message="Is Sasikumar available for internships?">💼 Hire</button>
+        <div class="chatbot-tabs">
+            <button class="chatbot-tab active" id="tabChat">Current Chat</button>
+            <button class="chatbot-tab" id="tabHistory">History</button>
         </div>
 
-        <div class="chatbot-input-bar">
-            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask about Sasikumar..." maxlength="500" autocomplete="off" />
-            <button class="chatbot-send-btn" id="chatbotSend" aria-label="Send message" disabled>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-            </button>
+        <!-- Chat View -->
+        <div class="chatbot-view active" id="viewChat">
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Welcome message is injected via JS on new chat -->
+            </div>
+
+            <div class="chatbot-suggestions" id="chatbotSuggestions">
+                <button class="chatbot-chip" data-message="What projects has Sasikumar built?">🚀 Projects</button>
+                <button class="chatbot-chip" data-message="What are Sasikumar's technical skills?">💡 Skills</button>
+                <button class="chatbot-chip" data-message="Tell me about Sasikumar's achievements">🏆 Achievements</button>
+                <button class="chatbot-chip" data-message="Is Sasikumar available for internships?">💼 Hire</button>
+            </div>
+
+            <div class="chatbot-input-bar">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask DragGo..." maxlength="500" autocomplete="off" />
+                <button class="chatbot-send-btn" id="chatbotSend" aria-label="Send message" disabled>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="chatbot-disclaimer">AI can make mistakes. Verify important info.</div>
         </div>
-        <div class="chatbot-disclaimer">AI can make mistakes. Verify important info.</div>
+
+        <!-- History View -->
+        <div class="chatbot-view" id="viewHistory">
+            <div class="chatbot-history-list" id="chatbotHistoryList">
+                <!-- History items injected via JS -->
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

@@ -548,6 +548,22 @@ python main.py</pre>
         const fab = document.getElementById('chatbotFab');
         const chatWindow = document.getElementById('chatbotWindow');
         const closeBtn = document.getElementById('chatbotClose');
+        
+        // Splash
+        const splash = document.getElementById('chatbotSplash');
+        const startChatBtn = document.getElementById('startChatBtn');
+        
+        // Header actions
+        const newChatBtn = document.getElementById('chatbotNewChat');
+        
+        // Tabs
+        const tabChat = document.getElementById('tabChat');
+        const tabHistory = document.getElementById('tabHistory');
+        const viewChat = document.getElementById('viewChat');
+        const viewHistory = document.getElementById('viewHistory');
+        const historyList = document.getElementById('chatbotHistoryList');
+
+        // Chat view
         const messagesContainer = document.getElementById('chatbotMessages');
         const input = document.getElementById('chatbotInput');
         const sendBtn = document.getElementById('chatbotSend');
@@ -556,19 +572,36 @@ python main.py</pre>
 
         if (!fab || !chatWindow) return;
 
-        // Chat state
-        let chatHistory = []; // { role: 'user'|'assistant', content: string }
+        // State
+        let currentSessionId = Date.now().toString();
+        let chatHistory = []; // current session messages
         let isLoading = false;
+        
+        // Load sessions from localStorage
+        let savedSessions = JSON.parse(localStorage.getItem('draggo_chats')) || {};
 
-        // Configure marked for safe rendering
+        // Configure marked
         if (typeof marked !== 'undefined') {
-            marked.setOptions({
-                breaks: true,
-                gfm: true,
-            });
+            marked.setOptions({ breaks: true, gfm: true });
         }
 
-        // Toggle chat window
+        // --- Splash Screen Logic ---
+        function checkSplash() {
+            if (!localStorage.getItem('draggo_splash_seen')) {
+                splash.classList.remove('hidden');
+            } else {
+                splash.classList.add('hidden');
+            }
+        }
+        
+        startChatBtn.addEventListener('click', () => {
+            localStorage.setItem('draggo_splash_seen', 'true');
+            splash.style.opacity = '0';
+            setTimeout(() => splash.classList.add('hidden'), 400);
+            input.focus();
+        });
+
+        // --- Core Window Toggle ---
         function toggleChat() {
             const isOpen = chatWindow.classList.contains('open');
             if (isOpen) {
@@ -577,54 +610,135 @@ python main.py</pre>
             } else {
                 chatWindow.classList.add('open');
                 fab.classList.add('active');
-                input.focus();
+                checkSplash();
+                
+                // If opening and we are on chat view and splash is hidden, focus input
+                if (viewChat.classList.contains('active') && localStorage.getItem('draggo_splash_seen')) {
+                    input.focus();
+                }
             }
         }
 
         fab.addEventListener('click', toggleChat);
         closeBtn.addEventListener('click', toggleChat);
-
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && chatWindow.classList.contains('open')) {
-                toggleChat();
+            if (e.key === 'Escape' && chatWindow.classList.contains('open')) toggleChat();
+        });
+
+        // --- Tabs Logic ---
+        function switchTab(tab) {
+            if (tab === 'chat') {
+                tabChat.classList.add('active');
+                tabHistory.classList.remove('active');
+                viewChat.classList.add('active');
+                viewHistory.classList.remove('active');
+                if (localStorage.getItem('draggo_splash_seen')) input.focus();
+            } else {
+                tabHistory.classList.add('active');
+                tabChat.classList.remove('active');
+                viewHistory.classList.add('active');
+                viewChat.classList.remove('active');
+                renderHistoryList();
             }
-        });
+        }
+        
+        tabChat.addEventListener('click', () => switchTab('chat'));
+        tabHistory.addEventListener('click', () => switchTab('history'));
 
-        // Enable/disable send button based on input
-        input.addEventListener('input', () => {
-            sendBtn.disabled = !input.value.trim() || isLoading;
-        });
-
-        // Send on Enter
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
+        // --- Chat Operations ---
+        function initNewChat() {
+            currentSessionId = Date.now().toString();
+            chatHistory = [];
+            
+            // Reset UI
+            messagesContainer.innerHTML = `
+                <div class="chatbot-welcome">
+                    <p>👋 Hey! I'm DragGo, Sasikumar's AI assistant. Ask me anything about his projects, skills, or experience!</p>
+                </div>
+            `;
+            if (suggestionsContainer) {
+                suggestionsContainer.classList.remove('hidden');
             }
-        });
+            input.value = '';
+            sendBtn.disabled = true;
+            
+            switchTab('chat');
+        }
+        
+        newChatBtn.addEventListener('click', initNewChat);
 
-        sendBtn.addEventListener('click', handleSend);
-
-        // Suggestion chip click
-        chips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                const msg = chip.getAttribute('data-message');
-                if (msg && !isLoading) {
-                    input.value = msg;
-                    handleSend();
-                }
+        function saveSession() {
+            if (chatHistory.length === 0) return;
+            
+            // Save preview of first user message
+            const firstUserMsg = chatHistory.find(m => m.role === 'user');
+            const preview = firstUserMsg ? firstUserMsg.content : 'New Chat';
+            
+            savedSessions[currentSessionId] = {
+                id: currentSessionId,
+                date: new Date().toISOString(),
+                preview: preview,
+                messages: chatHistory
+            };
+            
+            localStorage.setItem('draggo_chats', JSON.stringify(savedSessions));
+        }
+        
+        function loadSession(id) {
+            const session = savedSessions[id];
+            if (!session) return;
+            
+            currentSessionId = id;
+            chatHistory = session.messages || [];
+            
+            // Rebuild UI
+            messagesContainer.innerHTML = '';
+            if (suggestionsContainer) suggestionsContainer.classList.add('hidden');
+            
+            chatHistory.forEach(msg => {
+                addMessageToDOM(msg.role, msg.content, false);
             });
-        });
+            
+            switchTab('chat');
+            scrollToBottom();
+        }
 
+        // --- History List Rendering ---
+        function renderHistoryList() {
+            historyList.innerHTML = '';
+            
+            const sessions = Object.values(savedSessions).sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            if (sessions.length === 0) {
+                historyList.innerHTML = '<div style="text-align:center; padding: 20px; color: var(--color-gray-500); font-size: 0.8rem;">No chat history yet.</div>';
+                return;
+            }
+            
+            sessions.forEach(session => {
+                const item = document.createElement('div');
+                item.classList.add('chatbot-history-item');
+                
+                const dateOpt = { month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' };
+                const dateStr = new Date(session.date).toLocaleDateString(undefined, dateOpt);
+                
+                item.innerHTML = `
+                    <div class="chatbot-history-item-preview">💬 ${session.preview}</div>
+                    <div class="chatbot-history-item-date">${dateStr}</div>
+                `;
+                
+                item.addEventListener('click', () => loadSession(session.id));
+                historyList.appendChild(item);
+            });
+        }
+
+        // --- Messaging Logic ---
         function scrollToBottom() {
             requestAnimationFrame(() => {
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             });
         }
 
-        function addMessage(role, content) {
-            // Remove welcome message on first interaction
+        function addMessageToDOM(role, content, save = true) {
             const welcome = messagesContainer.querySelector('.chatbot-welcome');
             if (welcome) welcome.remove();
 
@@ -639,13 +753,11 @@ python main.py</pre>
                 div.textContent = content;
             } else {
                 div.classList.add('chatbot-msg--ai');
-                // Parse markdown
                 if (typeof marked !== 'undefined') {
                     div.innerHTML = marked.parse(content);
                 } else {
                     div.textContent = content;
                 }
-                // Open links in new tab
                 div.querySelectorAll('a').forEach(a => {
                     a.setAttribute('target', '_blank');
                     a.setAttribute('rel', 'noopener noreferrer');
@@ -654,6 +766,10 @@ python main.py</pre>
 
             messagesContainer.appendChild(div);
             scrollToBottom();
+            
+            if (save && role !== 'error') {
+                saveSession();
+            }
         }
 
         function showTyping() {
@@ -678,23 +794,20 @@ python main.py</pre>
             sendBtn.disabled = true;
             input.value = '';
 
-            // Hide suggestion chips after first message
-            if (suggestionsContainer) {
-                suggestionsContainer.classList.add('hidden');
-            }
+            if (suggestionsContainer) suggestionsContainer.classList.add('hidden');
 
-            // Add user message
             chatHistory.push({ role: 'user', content: text });
-            addMessage('user', text);
-
-            // Show typing indicator
+            addMessageToDOM('user', text);
             showTyping();
 
             try {
+                // Determine context size (last 6 messages)
+                const recentHistory = chatHistory.slice(-6);
+                
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ messages: chatHistory }),
+                    body: JSON.stringify({ messages: recentHistory }),
                 });
 
                 removeTyping();
@@ -708,16 +821,41 @@ python main.py</pre>
                 const reply = data.reply || 'Sorry, I could not generate a response.';
 
                 chatHistory.push({ role: 'assistant', content: reply });
-                addMessage('assistant', reply);
+                addMessageToDOM('assistant', reply);
             } catch (error) {
                 removeTyping();
-                addMessage('error', '⚠️ ' + (error.message || 'Something went wrong. Please try again.'));
+                addMessageToDOM('error', '⚠️ ' + (error.message || 'Something went wrong. Please try again.'), false);
+                // Remove the failed user message from history so it doesn't get saved improperly
+                chatHistory.pop();
             } finally {
                 isLoading = false;
                 sendBtn.disabled = !input.value.trim();
-                input.focus();
+                if (viewChat.classList.contains('active')) input.focus();
             }
         }
+
+        // --- Event Listeners ---
+        input.addEventListener('input', () => { sendBtn.disabled = !input.value.trim() || isLoading; });
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+        sendBtn.addEventListener('click', handleSend);
+
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const msg = chip.getAttribute('data-message');
+                if (msg && !isLoading) {
+                    input.value = msg;
+                    handleSend();
+                }
+            });
+        });
+        
+        // Initialize state on load
+        initNewChat();
     })();
 
 });
