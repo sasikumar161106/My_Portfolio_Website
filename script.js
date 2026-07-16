@@ -574,7 +574,7 @@ python main.py</pre>
         if (!fab || !chatWindow) return;
 
         // Check if tooltip should be hidden on load
-        if (localStorage.getItem('draggo_splash_seen') && tooltip) {
+        if (localStorage.getItem('draggo_tooltip_seen') && tooltip) {
             tooltip.classList.add('hidden');
         }
 
@@ -609,7 +609,10 @@ python main.py</pre>
 
         // --- Core Window Toggle ---
         function toggleChat() {
-            if (tooltip) tooltip.classList.add('hidden'); // Hide tooltip on interact
+            if (tooltip && !tooltip.classList.contains('hidden')) {
+                tooltip.classList.add('hidden');
+                localStorage.setItem('draggo_tooltip_seen', 'true');
+            }
             const isOpen = chatWindow.classList.contains('open');
             if (isOpen) {
                 chatWindow.classList.remove('open');
