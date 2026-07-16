@@ -540,4 +540,184 @@ python main.py</pre>
         });
     })();
 
+
+    /* ==========================================================================
+       AI CHATBOT
+       ========================================================================== */
+    (function initChatbot() {
+        const fab = document.getElementById('chatbotFab');
+        const chatWindow = document.getElementById('chatbotWindow');
+        const closeBtn = document.getElementById('chatbotClose');
+        const messagesContainer = document.getElementById('chatbotMessages');
+        const input = document.getElementById('chatbotInput');
+        const sendBtn = document.getElementById('chatbotSend');
+        const suggestionsContainer = document.getElementById('chatbotSuggestions');
+        const chips = document.querySelectorAll('.chatbot-chip');
+
+        if (!fab || !chatWindow) return;
+
+        // Chat state
+        let chatHistory = []; // { role: 'user'|'assistant', content: string }
+        let isLoading = false;
+
+        // Configure marked for safe rendering
+        if (typeof marked !== 'undefined') {
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+            });
+        }
+
+        // Toggle chat window
+        function toggleChat() {
+            const isOpen = chatWindow.classList.contains('open');
+            if (isOpen) {
+                chatWindow.classList.remove('open');
+                fab.classList.remove('active');
+            } else {
+                chatWindow.classList.add('open');
+                fab.classList.add('active');
+                input.focus();
+            }
+        }
+
+        fab.addEventListener('click', toggleChat);
+        closeBtn.addEventListener('click', toggleChat);
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && chatWindow.classList.contains('open')) {
+                toggleChat();
+            }
+        });
+
+        // Enable/disable send button based on input
+        input.addEventListener('input', () => {
+            sendBtn.disabled = !input.value.trim() || isLoading;
+        });
+
+        // Send on Enter
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+
+        sendBtn.addEventListener('click', handleSend);
+
+        // Suggestion chip click
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const msg = chip.getAttribute('data-message');
+                if (msg && !isLoading) {
+                    input.value = msg;
+                    handleSend();
+                }
+            });
+        });
+
+        function scrollToBottom() {
+            requestAnimationFrame(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            });
+        }
+
+        function addMessage(role, content) {
+            // Remove welcome message on first interaction
+            const welcome = messagesContainer.querySelector('.chatbot-welcome');
+            if (welcome) welcome.remove();
+
+            const div = document.createElement('div');
+            div.classList.add('chatbot-msg');
+
+            if (role === 'user') {
+                div.classList.add('chatbot-msg--user');
+                div.textContent = content;
+            } else if (role === 'error') {
+                div.classList.add('chatbot-msg--error');
+                div.textContent = content;
+            } else {
+                div.classList.add('chatbot-msg--ai');
+                // Parse markdown
+                if (typeof marked !== 'undefined') {
+                    div.innerHTML = marked.parse(content);
+                } else {
+                    div.textContent = content;
+                }
+                // Open links in new tab
+                div.querySelectorAll('a').forEach(a => {
+                    a.setAttribute('target', '_blank');
+                    a.setAttribute('rel', 'noopener noreferrer');
+                });
+            }
+
+            messagesContainer.appendChild(div);
+            scrollToBottom();
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.classList.add('chatbot-typing');
+            typing.id = 'chatbotTyping';
+            typing.innerHTML = '<span></span><span></span><span></span>';
+            messagesContainer.appendChild(typing);
+            scrollToBottom();
+        }
+
+        function removeTyping() {
+            const typing = document.getElementById('chatbotTyping');
+            if (typing) typing.remove();
+        }
+
+        async function handleSend() {
+            const text = input.value.trim();
+            if (!text || isLoading) return;
+
+            isLoading = true;
+            sendBtn.disabled = true;
+            input.value = '';
+
+            // Hide suggestion chips after first message
+            if (suggestionsContainer) {
+                suggestionsContainer.classList.add('hidden');
+            }
+
+            // Add user message
+            chatHistory.push({ role: 'user', content: text });
+            addMessage('user', text);
+
+            // Show typing indicator
+            showTyping();
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: chatHistory }),
+                });
+
+                removeTyping();
+
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.error || `Error ${response.status}`);
+                }
+
+                const data = await response.json();
+                const reply = data.reply || 'Sorry, I could not generate a response.';
+
+                chatHistory.push({ role: 'assistant', content: reply });
+                addMessage('assistant', reply);
+            } catch (error) {
+                removeTyping();
+                addMessage('error', '⚠️ ' + (error.message || 'Something went wrong. Please try again.'));
+            } finally {
+                isLoading = false;
+                sendBtn.disabled = !input.value.trim();
+                input.focus();
+            }
+        }
+    })();
+
 });
