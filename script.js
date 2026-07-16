@@ -548,6 +548,7 @@ python main.py</pre>
         const fab = document.getElementById('chatbotFab');
         const chatWindow = document.getElementById('chatbotWindow');
         const closeBtn = document.getElementById('chatbotClose');
+        const tooltip = document.getElementById('chatbotTooltip');
         
         // Splash
         const splash = document.getElementById('chatbotSplash');
@@ -571,6 +572,11 @@ python main.py</pre>
         const chips = document.querySelectorAll('.chatbot-chip');
 
         if (!fab || !chatWindow) return;
+
+        // Check if tooltip should be hidden on load
+        if (localStorage.getItem('draggo_splash_seen') && tooltip) {
+            tooltip.classList.add('hidden');
+        }
 
         // State
         let currentSessionId = Date.now().toString();
@@ -603,6 +609,7 @@ python main.py</pre>
 
         // --- Core Window Toggle ---
         function toggleChat() {
+            if (tooltip) tooltip.classList.add('hidden'); // Hide tooltip on interact
             const isOpen = chatWindow.classList.contains('open');
             if (isOpen) {
                 chatWindow.classList.remove('open');
