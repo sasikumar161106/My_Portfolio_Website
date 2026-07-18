@@ -547,6 +547,7 @@ python main.py</pre>
     (function initChatbot() {
         const fab = document.getElementById('chatbotFab');
         const chatWindow = document.getElementById('chatbotWindow');
+        const closeBtn = document.getElementById('chatbotClose');
         const tooltip = document.getElementById('chatbotTooltip');
         
         // Splash
@@ -623,6 +624,7 @@ python main.py</pre>
         }
 
         fab.addEventListener('click', toggleChat);
+        if (closeBtn) closeBtn.addEventListener('click', toggleChat);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && chatWindow.classList.contains('open')) toggleChat();
         });

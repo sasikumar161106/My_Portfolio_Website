@@ -2422,20 +2422,7 @@ ul {
     position: absolute;
 }
 
-.chatbot-fab-icon--close {
-    opacity: 0;
-    transform: rotate(-90deg) scale(0.5);
-}
 
-.chatbot-fab.active .chatbot-fab-icon--chat {
-    opacity: 0;
-    transform: rotate(90deg) scale(0.5);
-}
-
-.chatbot-fab.active .chatbot-fab-icon--close {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-}
 
 .chatbot-fab-pulse {
     display: none;
