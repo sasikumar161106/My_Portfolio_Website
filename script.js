@@ -573,11 +573,6 @@ python main.py</pre>
 
         if (!fab || !chatWindow) return;
 
-        // Check if tooltip should be hidden on load
-        if (localStorage.getItem('draggo_tooltip_seen') && tooltip) {
-            tooltip.classList.add('hidden');
-        }
-
         // State
         let currentSessionId = Date.now().toString();
         let chatHistory = []; // current session messages
@@ -611,7 +606,6 @@ python main.py</pre>
         function toggleChat() {
             if (tooltip && !tooltip.classList.contains('hidden')) {
                 tooltip.classList.add('hidden');
-                localStorage.setItem('draggo_tooltip_seen', 'true');
             }
             const isOpen = chatWindow.classList.contains('open');
             if (isOpen) {
