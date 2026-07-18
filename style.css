@@ -2398,7 +2398,7 @@ ul {
 /* ── Floating Action Button ── */
 .chatbot-fab {
     position: fixed;
-    bottom: 28px;
+    bottom: 55px;
     right: 28px;
     z-index: 9999;
     width: 75px;
@@ -2454,7 +2454,7 @@ ul {
 /* ── Suggestion Tooltip ── */
 .chatbot-tooltip {
     position: fixed;
-    bottom: 40px;
+    bottom: 70px;
     right: 105px;
     background: rgba(34, 197, 94, 0.15);
     border: 1px solid var(--color-accent);
