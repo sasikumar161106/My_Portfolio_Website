@@ -2422,6 +2422,13 @@ ul {
     position: absolute;
 }
 
+.chatbot-fab.active {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.5);
+}
+
 
 
 .chatbot-fab-pulse {
