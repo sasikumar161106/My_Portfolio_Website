@@ -3022,3 +3022,47 @@ ul {
         height: 54px;
     }
 }
+
+/* ==========================================================================
+   CHATBOT FIRE ANIMATION (BLACK & WHITE)
+   ========================================================================== */
+.chatbot-fab::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: transparent;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(8px);
+    transition: opacity 0.3s ease;
+}
+
+.chatbot-fab.fire-motion::before {
+    opacity: 1;
+    animation: bwFire 0.5s infinite alternate;
+}
+
+@keyframes bwFire {
+    0% {
+        box-shadow: 
+            0 0 10px white,
+            0 -10px 20px #ccc,
+            0 -20px 30px #666,
+            0 -30px 40px black;
+        transform: translateX(-50%) scale(1) translateY(0);
+    }
+    100% {
+        box-shadow: 
+            0 0 15px white,
+            0 -20px 25px #ccc,
+            0 -40px 40px #666,
+            0 -60px 50px black;
+        transform: translateX(-50%) scale(1.1) translateY(-5px);
+    }
+}

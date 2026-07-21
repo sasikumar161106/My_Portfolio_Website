@@ -936,6 +936,16 @@ python main.py</pre>
                         if (sectionTooltips[sectionId] && tooltipSpan) {
                             tooltipSpan.textContent = sectionTooltips[sectionId];
                         }
+                        
+                        // Trigger fire motion on FAB
+                        const chatbotFab = document.getElementById('chatbotFab');
+                        if (chatbotFab) {
+                            chatbotFab.classList.add('fire-motion');
+                            if (chatbotFab.fireTimeout) clearTimeout(chatbotFab.fireTimeout);
+                            chatbotFab.fireTimeout = setTimeout(() => {
+                                chatbotFab.classList.remove('fire-motion');
+                            }, 1200);
+                        }
                     }
                 });
             }, { rootMargin: "-30% 0px -30% 0px" }); 
