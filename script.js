@@ -587,16 +587,18 @@ python main.py</pre>
         }
 
         // --- Splash Screen Logic ---
+        let splashSeen = false;
         function checkSplash() {
-            if (!localStorage.getItem('draggo_splash_seen')) {
+            if (!splashSeen) {
                 splash.classList.remove('hidden');
+                splash.style.opacity = '1';
             } else {
                 splash.classList.add('hidden');
             }
         }
         
         startChatBtn.addEventListener('click', () => {
-            localStorage.setItem('draggo_splash_seen', 'true');
+            splashSeen = true;
             splash.style.opacity = '0';
             setTimeout(() => splash.classList.add('hidden'), 400);
             input.focus();
@@ -617,7 +619,7 @@ python main.py</pre>
                 checkSplash();
                 
                 // If opening and we are on chat view and splash is hidden, focus input
-                if (viewChat.classList.contains('active') && localStorage.getItem('draggo_splash_seen')) {
+                if (viewChat.classList.contains('active') && splashSeen) {
                     input.focus();
                 }
             }
@@ -647,7 +649,7 @@ python main.py</pre>
                 tabHistory.classList.remove('active');
                 viewChat.classList.add('active');
                 viewHistory.classList.remove('active');
-                if (localStorage.getItem('draggo_splash_seen')) input.focus();
+                if (splashSeen) input.focus();
             } else {
                 tabHistory.classList.add('active');
                 tabChat.classList.remove('active');
