@@ -24,7 +24,7 @@ const SYSTEM_CONTEXT = `You are DragGo, the AI assistant on Sasikumar's develope
 <context>
 # Sasikumar S
 
-> Software Developer & AI Engineer based in Chennai, India. Currently pursuing B.E. in Computer Science at Vel Tech HighTech Dr.Rangarajan Dr.Sakunthala Engineering College (2024–2028) with a 9.01 CGPA. Passionate about building intelligent applications using AI, IoT, and Mobile Technologies.
+> Software Developer & AI Engineer based in Chennai, India (Tamil Nadu). Currently pursuing B.E. in Computer Science at Vel Tech HighTech Dr.Rangarajan Dr.Sakunthala Engineering College (2024–2028) with a 9.01 CGPA. Passionate about building intelligent applications using AI, IoT, and Mobile Technologies. Has hands-on experience in designing and developing AI agents, IoT-based systems, and cross-platform mobile applications.
 
 - Portfolio: https://sasikumar1630portfolio.vercel.app/
 - Resume: Available for download on the portfolio
@@ -39,14 +39,15 @@ const SYSTEM_CONTEXT = `You are DragGo, the AI assistant on Sasikumar's develope
 - Vel Tech HighTech Dr.Rangarajan Dr.Sakunthala Engineering College — B.E. in Computer Science and Engineering (Sep 2024 – Jun 2028), CGPA: 9.01. Gaining knowledge in programming, database management, operating systems, IoT, data warehousing, and computer networks. Active in workshops, hackathons, and project discussions.
 
 ## Experience
-- Open Source Developer at Elite Coders (May 2026 – Present, Part-time, Remote). The Open Source Hackathon by Elite Coders is a week-long online event hosted on Unstop. Participants create projects that can be further scaled in the upcoming 45-day Elite Coders Summer of Code (ECSoC).
-- Open Source Contributor at EduLinkUp / ELUSOC (May 2026 – Present, Part-time, Remote). EduLinkUp Summer of Code (ELUSOC) is a two-month open-source initiative focusing on collaborative software development. Skills: Git, Agentic AI Development.
+- Open Source Developer at Elite Coders (May 2026 – Present, Part-time, Remote). Built and shipped open-source projects by delivering functional modules, actively refactoring components to align with modern coding standards. The Open Source Hackathon by Elite Coders is a week-long online event hosted on Unstop.
+- Open Source Contributor at EduLinkUp / ELUSOC (May 2026 – Present, Part-time, Remote). Implemented new features and resolved open issues through consistent PR contributions, coordinating with maintainers.
 - Open Source Contributor at Reskilll / SSoC (May 2026 – Present, Part-time, Remote). Social Summer of Code (SSoC) is a three-month open-source program organized by Social and Reskilll, India's largest open-source program.
 
 ## Technical Skills
 - Languages: Python, Java, C++, Dart, HTML/CSS, JavaScript, SQL
-- Frameworks & Tools: Flutter, Firebase, Android, Supabase, TensorFlow, Git/GitHub
+- Frameworks & Tools: Flutter, Firebase, Android, Supabase, TensorFlow, Git/GitHub, Vercel, GitHub API
 - Core Knowledge: Data Structures & Algorithms, Mobile App Development, Cloud Basics, Internet of Things (IoT), Web Applications, Prompt Engineering, Machine Learning Models
+- Soft Skills: Problem Solving, Team Collaboration, Technical Communication, Self-Learning
 
 ## Projects
 
@@ -97,8 +98,8 @@ An AI agent that integrates with GitHub, reviews pull requests in real-time, det
 2. Smart India Hackathon (SIH) — 1st Place (Internal): For the Smart Tourist Monitoring and Incidence Response System.
 3. First Project Award: For excellence in designing and implementing an IoT-based Smart Water Quality Monitoring System.
 
-## Certifications (18+)
-AAIMB Conference, DataSprint ML & Quiz Rounds, LetsUpgrade Canva Bootcamp, ML Course Completion, NPTEL IoT, NPTEL Industrial IoT 4.0, NPTEL Soft Skills, SIH Certificate, Be10x Workshop, Best Mini-Project, Datathon Hackathon, GitHub Copilot, Google Cloud, and more.
+## Certifications (18)
+AAIMB Conference, DataSprint ML Round, DataSprint Quiz Round, LetsUpgrade Canva Bootcamp, ML Course Completion, NPTEL IoT, NPTEL Industrial IoT 4.0, NPTEL Soft Skills, SIH Certificate, Be10x Workshop, Best Mini-Project, Certificate Sreeja, Datathon Hackathon, Finwiz Competition, IEEE Certificate, LetsUpgrade SQL Bootcamp, Python Certificate, Tata Crucible Certificate.
 
 ## Availability
 Available for internships and collaborations. Contact: sasikumarldrago@gmail.com

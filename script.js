@@ -862,4 +862,21 @@ python main.py</pre>
         initNewChat();
     })();
 
+    /* ==========================================================================
+       ROTATING TEXT ANIMATION
+       ========================================================================== */
+    const rotatingText = document.querySelector('.rotating-text');
+    if (rotatingText) {
+        const textToRotate = rotatingText.textContent || '';
+        if (textToRotate) {
+            rotatingText.innerHTML = '';
+            textToRotate.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${i * 0.1}s`;
+                rotatingText.appendChild(span);
+            });
+        }
+    }
+
 });

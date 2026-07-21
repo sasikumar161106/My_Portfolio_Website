@@ -1,0 +1,59 @@
+SASIKUMAR S 
+Undergraduate Student  |  Software Developer  |  AI Engineer 
+sasikumarldrago@gmail.com  |  +91 7010491215  |  Chennai, Tamil Nadu 
+LinkedIn   |   GitHub   |   Portfolio   |   LeetCode 
+ 
+PROFESSIONAL SUMMARY 
+Computer Science undergraduate with hands-on experience in designing and developing AI agents, IoT-based systems, and cross-platform 
+mobile applications with a strong foundation in machine learning, agentic AI, cloud computing, and software development. Cont ributed to 
+open-source projects through Elite Coders and EduLinkUp, collaborating on real-world solutions and community-driven initiatives. Published 
+research work in emerging technology domains and recognized as a hackathon winner for developing innovative solutions to prac tical 
+challenges. 
+ 
+EDUCATION 
+B.E. in Computer Science and Engineering  |  Oct 2024 – May 2028 
+Vel Tech High Tech Dr. Rangarajan Dr. Sakunthala Engineering College, Chennai 
+CGPA: 9.01 / 10 
+ 
+TECHNICAL SKILLS 
+Languages: Python, Java, JavaScript, Dart, HTML, CSS, SQL, C++ 
+Frameworks: Flutter, React.js, Node.js, Express.js, TensorFlow 
+Tools & Platforms: Git, Firebase, Vercel, GitHub API 
+Domains: IoT, Agentic AI, ML Models, Cloud Basics, Prompt Engineering, Mobile App Dev 
+Soft Skills: Problem Solving, Team Collaboration, Technical Communication, Self-Learning 
+ 
+EXPERIENCE 
+Open Source Developer  |  Elite Coders 
+• Built and shipped open-source projects by delivering functional modules that were reviewed and merged into the main codebase, actively 
+refactoring components to align with modern coding standards and contributing to long-term maintainability of the codebase. 
+Open Source Contributor  |  EduLinkUp 
+• Implemented new features and resolved open issues on the EduLinkUp platform through consistent pull request contributions, 
+coordinating closely with maintainers to ensure architecture alignment and adherence to project conventions across the codebase. 
+ 
+PROJECTS 
+DocSync — Autonomous Documentation Agent  |  React.js, Node.js, Express.js, Gemini 2.5 Flash, GitHub API  
+• Engineered an AI agent that intercepts GitHub PR webhooks, analyzes code diffs using Gemini 2.5 Flash, and automatically generates 
+structured technical documentation injected directly into the developer’s PR workflow, eliminating manual documentation overhead and 
+enabling software teams to maintain up-to-date project docs within their CI/CD pipelines. 
+AI-Powered Code Review Assistant  |  Node.js, GitHub API, LLM API 
+• Automated pull request reviews using LLM -based static analysis to detect bugs, security vulnerabilities, a nd performance bottlenecks, 
+generating precise inline comments mapped to exact line numbers, reducing dependency on senior reviewers and enforcing consis tent 
+code quality standards across distributed agile development teams. 
+LogiSync AI — Autonomous Supply Chain Control Tower  |  Python, AI APIs, Dashboard UI 
+• Designed an autonomous AI agent for automotive MSMEs that continuously monitors supply chain data, predicts inventory shortag es 
+through trend analysis, and proactively drafts resolution strategies with a human-in-the-loop approval layer, helping manufacturers prevent 
+production downtime and reduce procurement costs in real-world parts distribution operations. 
+Smart Water Quality Monitoring System  |  Flutter, Firebase, ML Models, IoT Sensors  
+• Deployed an IoT system combining real-time weather API data with sensor readings to trigger context -aware alerts in both online and 
+offline modes, supported by a Flutter mobile app and a Firebase analytics dashboard, enabling continuous water quality monitoring for 
+rural and semi-urban communities where manual testing is infrequent; research published at an international conference. 
+Smart Tourist Monitoring and Incidence Response System  |  Flutter, Python, AI Models, Firebase  
+• Developed an AI-based tourist safety and monitoring system featuring a Flutter app with real -time location tracking, a Tourist Assist 
+feature for personalized place recommendations and safety-optimized routing, and four AI models providing intelligent companionship, 
+route optimization, behavioral anomaly detection, and real-time risk level prediction for enhanced tourist security in public environments. 
+ 
+ACHIEVEMENTS 
+• Published “AI Powered IoT Platform for Water Quality Monitoring and Weather Condition Analysis” at the 3rd International 
+Conference on Advances in Artificial Intelligence and Machine Learning in Big Data Processing. 
+• Secured 1st Place at the Internal Smart India Hackathon (SIH) for the Smart Tourist Monitoring System. 
+• Awarded the First Project Award for the design and implementation of an IoT-based Smart Water Quality Monitoring System.

@@ -253,6 +253,19 @@ ul {
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 20px;
     position: relative;
+    perspective: 1000px;
+}
+
+.rotating-text span {
+    display: inline-block;
+    animation: rotateLetter 4s infinite linear;
+    transform-style: preserve-3d;
+}
+
+@keyframes rotateLetter {
+    0% { transform: rotateY(0deg) translateY(0); color: inherit; }
+    50% { transform: rotateY(180deg) translateY(-3px); color: var(--color-accent); }
+    100% { transform: rotateY(360deg) translateY(0); color: inherit; }
 }
 
 /* Greeting */
