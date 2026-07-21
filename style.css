@@ -2507,6 +2507,9 @@ ul {
 
 /* ── Chat Window ── */
 .chatbot-window {
+    font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1px;
     position: fixed;
     bottom: 100px;
     right: 28px;

@@ -734,7 +734,7 @@ python main.py</pre>
             messagesContainer.innerHTML = `
                 <div class="chatbot-welcome">
                     <p>hi i am dragGo</p>
-                    <p>sasikumars ai portfolio assistant</p>
+                    <p>Sasikumar's AI Portfolio Assistant</p>
                 </div>
             `;
             if (suggestionsContainer) {
