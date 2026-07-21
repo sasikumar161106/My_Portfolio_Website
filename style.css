@@ -2897,6 +2897,32 @@ ul {
     color: #fff;
 }
 
+.chatbot-msg-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chatbot-msg-speak-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-gray-500);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.chatbot-msg-speak-btn:hover {
+    color: var(--color-accent);
+    background: rgba(34, 197, 94, 0.1);
+}
+
 .chatbot-msg--ai ul,
 .chatbot-msg--ai ol {
     padding-left: 18px;
