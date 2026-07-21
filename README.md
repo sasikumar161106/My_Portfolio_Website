@@ -15,6 +15,7 @@ Check out the live version of my portfolio here: **[https://sasikumar1630portfol
 
 - **Custom UI Architecture**: No CSS frameworks were used. Every component, from the glass cards to the hexagonal neon buttons, is styled purely with standard CSS3 properties (CSS Grid, Flexbox, CSS Variables).
 - **Interactive Glassmorphism**: Heavily utilizes `backdrop-filter: blur()` and layered `rgba` backgrounds to achieve a translucent, high-tech HUD aesthetic.
+- **DragGo AI Assistant**: Features a custom-built, context-aware AI chatbot powered by Google's **Gemini 2.5 Flash**. It acts as an interactive portfolio guide, answering visitor questions about my background, skills, and projects in real-time.
 - **Scroll Reveal Animations**: Elements elegantly fade and slide into view as the user scrolls down the page, utilizing the Intersection Observer API.
 - **Dynamic Projects Gallery**: Features a built-in Javascript-powered modal lightbox system for viewing detailed case studies of my projects.
 - **Fully Responsive**: The layout fluidly adapts to any screen size, seamlessly collapsing complex grid structures into scrollable mobile-friendly views.
@@ -43,6 +44,8 @@ Check out the live version of my portfolio here: **[https://sasikumar1630portfol
 - **HTML5**: Semantic markup structuring the classic single-page application flow.
 - **CSS3**: Variables, Flexbox, Grid, Pseudo-elements (`::before`, `::after`), Keyframes, and high-end aesthetic properties like `clip-path` and `backdrop-filter`.
 - **Vanilla JavaScript (ES6)**: Powers the dynamic DOM manipulations, scroll listeners, modal systems, and form handling—zero heavy libraries like jQuery or React.
+- **Node.js & Serverless**: Powers the backend `/api/chat` route to securely communicate with AI models.
+- **Generative AI (Gemini)**: Integrates `@google/generative-ai` to run the intelligent conversational agent.
 - **Devicon**: Utilized for the beautiful, vector-based technology stack icons.
 
 ## 🗂️ Project Structure
