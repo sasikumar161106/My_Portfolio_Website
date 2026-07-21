@@ -20,22 +20,17 @@ Check out the live version of my portfolio here: **[https://sasikumar1630portfol
 - **Dynamic Projects Gallery**: Features a built-in Javascript-powered modal lightbox system for viewing detailed case studies of my projects.
 - **Fully Responsive**: The layout fluidly adapts to any screen size, seamlessly collapsing complex grid structures into scrollable mobile-friendly views.
 
-## 📸 Screenshots
+## 🤖 DragGo AI Assistant
 
-### About & Skills
-![About Me](./my_about.png)
-![Skills](./new_skill_section.png)
+![DragGo Logo](./images/draggo-logo.png)
 
-### Services & Experience
-![Services](./new_service_section.png)
-![Experience](./experience_section.png)
+This portfolio features **DragGo**, a custom-built, context-aware AI chatbot powered by Google's **Gemini 2.5 Flash**. It acts as an interactive guide for visitors. 
 
-### Projects & Achievements
-![Projects](./project_section.png)
-![Achievements](./achievement_section.png)
-
-### Contact
-![Contact](./contact_section.png)
+**Key Capabilities:**
+- **Context-Aware Responses**: DragGo has deep knowledge of my resume, skills, projects, and certifications.
+- **Strict Guardrails**: It is strictly programmed to act as a portfolio assistant. It will not hallucinate facts, generate code, or answer off-topic queries.
+- **Token Optimization**: It manages conversation history intelligently by retaining only the last 6 messages to preserve context while ensuring speed and token efficiency.
+- **Secure Integration**: Connects via a serverless Node.js backend route (`/api/chat`) to securely manage the API keys and prevent frontend exposure.
 
 ---
 
