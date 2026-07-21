@@ -668,7 +668,7 @@ python main.py</pre>
             // Reset UI
             messagesContainer.innerHTML = `
                 <div class="chatbot-welcome">
-                    <p>hi i am dragGo</p>
+                    <p>Hi! I am DragGo</p>
                     <p>Sasikumar's AI Portfolio Assistant</p>
                 </div>
             `;
