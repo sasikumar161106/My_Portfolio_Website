@@ -805,8 +805,23 @@ python main.py</pre>
             window.speechSynthesis.cancel();
             const cleanText = text.replace(/[*_#`\[\]()]/g, ' ').replace(/>/g, '');
             const utterance = new SpeechSynthesisUtterance(cleanText);
+            
+            // Lower pitch specifically to create a bolder/deeper tone
+            utterance.pitch = 0.8;
+            utterance.rate = 1.0;
+
             const voices = window.speechSynthesis.getVoices();
-            const preferredVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Google') || v.name.includes('Microsoft') || v.name.includes('Samantha')));
+            // Specifically parse known English Male synthetic voices locally available
+            const preferredVoice = voices.find(v => v.lang.includes('en') && (
+                v.name.includes('David') || 
+                v.name.includes('Google UK English Male') || 
+                v.name.includes('Mark') || 
+                v.name.includes('George') || 
+                v.name.includes('Alex') || 
+                v.name.includes('Daniel')
+            )) || voices.find(v => v.lang.includes('en') && v.name.includes('Male')) 
+               || voices.find(v => v.lang.includes('en'));
+               
             if(preferredVoice) utterance.voice = preferredVoice;
             window.speechSynthesis.speak(utterance);
         }
