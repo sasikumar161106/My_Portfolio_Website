@@ -589,17 +589,31 @@ python main.py</pre>
         // --- Splash Screen Logic ---
         let splashSeen = false;
         function checkSplash() {
+            const innerElements = document.querySelectorAll('.chatbot-header, .chatbot-tabs, .chatbot-view');
             if (!splashSeen) {
                 splash.classList.remove('hidden');
                 splash.style.opacity = '1';
+                innerElements.forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.pointerEvents = 'none';
+                });
             } else {
                 splash.classList.add('hidden');
+                innerElements.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.pointerEvents = 'auto';
+                });
             }
         }
         
         startChatBtn.addEventListener('click', () => {
             splashSeen = true;
             splash.style.opacity = '0';
+            document.querySelectorAll('.chatbot-header, .chatbot-tabs, .chatbot-view').forEach(el => {
+                el.style.transition = 'opacity 0.4s ease';
+                el.style.opacity = '1';
+                el.style.pointerEvents = 'auto';
+            });
             setTimeout(() => splash.classList.add('hidden'), 400);
             input.focus();
         });
