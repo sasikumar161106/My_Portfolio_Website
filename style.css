@@ -2567,10 +2567,9 @@ ul {
 
 .chatbot-header-title {
     font-family: 'Michroma', 'Orbitron', var(--font-main);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 400;
     letter-spacing: 1.5px;
-    text-transform: uppercase;
     color: #fff;
     margin: 0;
 }
@@ -2679,8 +2678,8 @@ ul {
 }
 
 .chatbot-splash-logo {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     background: transparent;
     border: none;
     display: flex;
@@ -2776,14 +2775,14 @@ ul {
 }
 
 .chatbot-welcome p {
-    font-size: 0.9rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
     color: var(--color-gray-300);
     line-height: 1.6;
 }
 
 .chatbot-welcome p:first-child {
-    font-size: 1.1rem;
-    font-family: var(--font-heading);
+    font-size: 1.25rem;
     color: #fff;
     font-weight: 500;
     margin-bottom: 5px;
