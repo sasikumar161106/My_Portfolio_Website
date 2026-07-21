@@ -848,15 +848,81 @@ python main.py</pre>
         });
         sendBtn.addEventListener('click', handleSend);
 
-        chips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                const msg = chip.getAttribute('data-message');
-                if (msg && !isLoading) {
-                    input.value = msg;
-                    handleSend();
+        if (suggestionsContainer) {
+            suggestionsContainer.addEventListener('click', (e) => {
+                const chip = e.target.closest('.chatbot-chip');
+                if (chip && !isLoading) {
+                    const msg = chip.getAttribute('data-message');
+                    if (msg) {
+                        input.value = msg;
+                        handleSend();
+                    }
                 }
             });
-        });
+        }
+        
+        // --- Dynamic Suggestions Based on Scroll ---
+        const sectionSuggestions = {
+            'hero': [
+                { label: '🚀 Projects', msg: 'What projects has Sasikumar built?' },
+                { label: '💡 Skills', msg: "What are Sasikumar's technical skills?" },
+                { label: '🏆 Achievements', msg: "Tell me about Sasikumar's achievements" },
+                { label: '💼 Hire', msg: 'Is Sasikumar available for internships?' }
+            ],
+            'about': [
+                { label: '👨‍💻 Who is he?', msg: 'Who is Sasikumar?' },
+                { label: '🎓 Education', msg: 'Where is he studying?' },
+                { label: '🎯 Passions', msg: 'What is he passionate about?' }
+            ],
+            'skills': [
+                { label: '💻 Frameworks', msg: 'What frameworks does he use?' },
+                { label: '🤖 AI/ML', msg: 'Does he have experience in AI and ML?' },
+                { label: '📱 Mobile Dev', msg: 'What are his mobile development skills?' }
+            ],
+            'services': [
+                { label: '⚙️ Services', msg: 'What services does he offer?' },
+                { label: '☁️ Cloud APIs', msg: 'Can he do cloud and API integration?' },
+                { label: '🌐 Web Dev', msg: 'Does he offer web development?' }
+            ],
+            'experience': [
+                { label: '📖 Open Source', msg: 'Tell me about his open source contributions' },
+                { label: '🏢 Elite Coders', msg: 'What was his role at Elite Coders?' },
+                { label: '🎓 Education', msg: 'Tell me about his college and CGPA' }
+            ],
+            'projects': [
+                { label: '📦 LogiSync', msg: 'Tell me about the LogiSync project' },
+                { label: '🤖 DocSync', msg: 'What is DocSync?' },
+                { label: '🛡️ TouristGuard', msg: 'Tell me about the Tourist monitoring system' }
+            ],
+            'achievements': [
+                { label: '🏅 Hackathons', msg: 'Tell me about his hackathon wins' },
+                { label: '📜 Certificates', msg: 'How many certificates does he have?' },
+                { label: '📄 Research', msg: 'Tell me about his published research paper' }
+            ],
+            'contact': [
+                { label: '📧 Email', msg: 'What is his email address?' },
+                { label: '📱 Phone', msg: 'How can I contact him by phone?' },
+                { label: '💼 Internships', msg: 'Is he available for internships?' }
+            ]
+        };
+
+        if (suggestionsContainer) {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        if (sectionSuggestions[sectionId]) {
+                            suggestionsContainer.innerHTML = sectionSuggestions[sectionId].map(s => 
+                                `<button class="chatbot-chip" data-message="${s.msg}">${s.label}</button>`
+                            ).join('');
+                        }
+                    }
+                });
+            }, { threshold: 0.3 }); 
+
+            sections.forEach(sec => observer.observe(sec));
+        }
         
         // Initialize state on load
         initNewChat();
