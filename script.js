@@ -906,16 +906,35 @@ python main.py</pre>
             ]
         };
 
+        const sectionTooltips = {
+            'hero': 'Try AI Assist DragGo!',
+            'about': 'Ask about his background!',
+            'skills': 'Ask about his tech skills!',
+            'services': 'Ask about his services!',
+            'experience': 'Ask about his experience!',
+            'projects': 'Ask about LogiSync/DocSync!',
+            'achievements': 'Ask about his hackathons!',
+            'contact': 'Ask for his contact info!'
+        };
+
         if (suggestionsContainer) {
+            const tooltipSpan = document.querySelector('#chatbotTooltip span');
             const sections = document.querySelectorAll('section');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const sectionId = entry.target.id;
+                        
+                        // Update inside chips
                         if (sectionSuggestions[sectionId]) {
                             suggestionsContainer.innerHTML = sectionSuggestions[sectionId].map(s => 
                                 `<button class="chatbot-chip" data-message="${s.msg}">${s.label}</button>`
                             ).join('');
+                        }
+                        
+                        // Update outer tooltip
+                        if (sectionTooltips[sectionId] && tooltipSpan) {
+                            tooltipSpan.textContent = sectionTooltips[sectionId];
                         }
                     }
                 });
