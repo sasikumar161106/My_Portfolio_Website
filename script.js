@@ -782,26 +782,8 @@ python main.py</pre>
         }
 
         // --- Voice Features ---
-        let voiceEnabled = false;
-        const btnSpeaker = document.getElementById('chatbotSpeaker');
-        
-        if (btnSpeaker) {
-            btnSpeaker.addEventListener('click', () => {
-                voiceEnabled = !voiceEnabled;
-                const icon = btnSpeaker.querySelector('svg');
-                if (voiceEnabled) {
-                    icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
-                    btnSpeaker.style.color = '#3b82f6';
-                } else {
-                    icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
-                    btnSpeaker.style.color = '';
-                    window.speechSynthesis.cancel();
-                }
-            });
-        }
-        
         function speakMessage(text) {
-            if (!voiceEnabled || !window.speechSynthesis) return;
+            if (!window.speechSynthesis) return;
             window.speechSynthesis.cancel();
             const cleanText = text.replace(/[*_#`\[\]()]/g, ' ').replace(/>/g, '');
             const utterance = new SpeechSynthesisUtterance(cleanText);
@@ -893,17 +875,33 @@ python main.py</pre>
                 div.textContent = content;
             } else {
                 div.classList.add('chatbot-msg--ai');
+                
+                const textDiv = document.createElement('div');
                 if (typeof marked !== 'undefined') {
-                    div.innerHTML = marked.parse(content);
+                    textDiv.innerHTML = marked.parse(content);
                 } else {
-                    div.textContent = content;
+                    textDiv.textContent = content;
                 }
-                div.querySelectorAll('a').forEach(a => {
+                textDiv.querySelectorAll('a').forEach(a => {
                     a.setAttribute('target', '_blank');
                     a.setAttribute('rel', 'noopener noreferrer');
                 });
                 
-                if (save) speakMessage(content);
+                div.appendChild(textDiv);
+                
+                const actionBar = document.createElement('div');
+                actionBar.className = 'chatbot-msg-actions';
+                
+                const speakBtn = document.createElement('button');
+                speakBtn.className = 'chatbot-msg-speak-btn';
+                speakBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
+                speakBtn.title = "Play audio";
+                speakBtn.addEventListener('click', () => {
+                    speakMessage(content);
+                });
+                
+                actionBar.appendChild(speakBtn);
+                div.appendChild(actionBar);
             }
 
             messagesContainer.appendChild(div);
