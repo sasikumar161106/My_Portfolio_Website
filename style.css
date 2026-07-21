@@ -2690,18 +2690,18 @@ ul {
 }
 
 .chatbot-splash-content h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #fff;
     margin: 0;
+    line-height: 1.2;
     font-family: 'Times New Roman', Times, serif !important;
 }
 
 .chatbot-splash-content p {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     color: var(--color-gray-200);
-    line-height: 1.5;
+    line-height: 1.2;
     margin: 0;
-    margin-bottom: 20px;
     font-family: 'Times New Roman', Times, serif !important;
 }
 
