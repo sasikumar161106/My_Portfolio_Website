@@ -606,9 +606,6 @@ python main.py</pre>
 
         // --- Core Window Toggle ---
         function toggleChat() {
-            if (tooltip && !tooltip.classList.contains('hidden')) {
-                tooltip.classList.add('hidden');
-            }
             const isOpen = chatWindow.classList.contains('open');
             if (isOpen) {
                 chatWindow.classList.remove('open');
