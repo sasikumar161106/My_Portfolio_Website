@@ -900,7 +900,16 @@ python main.py</pre>
                     speakMessage(content);
                 });
                 
+                const stopBtn = document.createElement('button');
+                stopBtn.className = 'chatbot-msg-speak-btn';
+                stopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12"></rect></svg>';
+                stopBtn.title = "Stop audio";
+                stopBtn.addEventListener('click', () => {
+                    if (window.speechSynthesis) window.speechSynthesis.cancel();
+                });
+                
                 actionBar.appendChild(speakBtn);
+                actionBar.appendChild(stopBtn);
                 div.appendChild(actionBar);
             }
 

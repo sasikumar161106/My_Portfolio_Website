@@ -2900,6 +2900,7 @@ ul {
 .chatbot-msg-actions {
     display: flex;
     justify-content: flex-end;
+    gap: 6px;
     margin-top: 6px;
     padding-top: 6px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
