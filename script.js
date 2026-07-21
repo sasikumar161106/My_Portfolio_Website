@@ -737,11 +737,32 @@ python main.py</pre>
                 const dateStr = new Date(session.date).toLocaleDateString(undefined, dateOpt);
                 
                 item.innerHTML = `
-                    <div class="chatbot-history-item-preview">💬 ${session.preview}</div>
-                    <div class="chatbot-history-item-date">${dateStr}</div>
+                    <div style="flex: 1; overflow: hidden;" class="chatbot-history-item-info">
+                        <div class="chatbot-history-item-preview">💬 ${session.preview}</div>
+                        <div class="chatbot-history-item-date">${dateStr}</div>
+                    </div>
+                    <button class="chatbot-history-del-btn" aria-label="Delete Session">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
                 `;
                 
-                item.addEventListener('click', () => loadSession(session.id));
+                const infoDiv = item.querySelector('.chatbot-history-item-info');
+                infoDiv.addEventListener('click', () => loadSession(session.id));
+                
+                const delBtn = item.querySelector('.chatbot-history-del-btn');
+                delBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    delete savedSessions[session.id];
+                    localStorage.setItem('draggo_chats', JSON.stringify(savedSessions));
+                    renderHistoryList();
+                    if (currentSessionId === session.id) {
+                        initNewChat();
+                    }
+                });
+                
                 historyList.appendChild(item);
             });
         }

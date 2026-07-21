@@ -2653,9 +2653,9 @@ ul {
     font-family: 'Inter', 'Outfit', sans-serif;
     position: absolute;
     inset: 0;
-    background: rgba(10, 10, 10, 0.35);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(10, 10, 10, 0.15);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     z-index: 10;
     display: flex;
     align-items: center;
@@ -2693,6 +2693,7 @@ ul {
     font-size: 1.2rem;
     color: #fff;
     margin: 0;
+    font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif !important;
 }
 
 .chatbot-splash-content p {
@@ -2701,6 +2702,7 @@ ul {
     line-height: 1.5;
     margin: 0;
     margin-bottom: 20px;
+    font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif !important;
 }
 
 /* Splash Button Styling & Animation */
@@ -2744,8 +2746,17 @@ ul {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
     padding: 12px;
-    cursor: pointer;
+    cursor: auto;
     transition: var(--transition-fast);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.chatbot-history-item-info {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -2767,6 +2778,21 @@ ul {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.chatbot-history-del-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-gray-500);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: var(--transition-fast);
+}
+
+.chatbot-history-del-btn:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
 }
 
 
