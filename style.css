@@ -2650,7 +2650,7 @@ ul {
 
 /* ── Splash Screen ── */
 .chatbot-splash {
-    font-family: 'Inter', 'Outfit', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     position: absolute;
     inset: 0;
     background: rgba(10, 10, 10, 0.15);
@@ -2693,7 +2693,7 @@ ul {
     font-size: 1.2rem;
     color: #fff;
     margin: 0;
-    font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif !important;
+    font-family: 'Times New Roman', Times, serif !important;
 }
 
 .chatbot-splash-content p {
@@ -2702,7 +2702,7 @@ ul {
     line-height: 1.5;
     margin: 0;
     margin-bottom: 20px;
-    font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif !important;
+    font-family: 'Times New Roman', Times, serif !important;
 }
 
 /* Splash Button Styling & Animation */
@@ -2712,7 +2712,7 @@ ul {
     padding: 12px 28px;
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
