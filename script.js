@@ -938,7 +938,7 @@ python main.py</pre>
                         }
                     }
                 });
-            }, { threshold: 0.3 }); 
+            }, { rootMargin: "-30% 0px -30% 0px" }); 
 
             sections.forEach(sec => observer.observe(sec));
         }
