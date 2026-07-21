@@ -2676,6 +2676,7 @@ ul {
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    transform: translateY(-20px);
 }
 
 .chatbot-splash-logo {
