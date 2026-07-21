@@ -63,8 +63,7 @@
         <div class="hero-content">
             <!-- Top Quote moved inside left content -->
             <div class="hero-top-quote fade-up" style="animation-delay: 0.1s;">
-                <span class="rotating-text" aria-label="Engineering the Future with Intelligence">Engineering the Future
-                    with Intelligence</span>
+                <span class="rotating-text" aria-label="Engineering the Future with Intelligence">Engineering the Future with Intelligence</span>
             </div>
 
             <p class="hero-greeting fade-up" style="animation-delay: 0.2s;">HI, I'M</p>
@@ -900,13 +899,6 @@
                 </div>
             </div>
             <div class="chatbot-header-right">
-                <button class="chatbot-header-btn" id="chatbotNewChat" aria-label="New chat" title="New Chat">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                </button>
                 <button class="chatbot-header-btn" id="chatbotClose" aria-label="Close chat" title="Close">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -916,7 +908,14 @@
             </div>
         </div>
 
-        <div class="chatbot-tabs">
+        <div class="chatbot-tabs" style="display: flex; align-items: center;">
+            <button class="chatbot-header-btn" id="chatbotNewChat" aria-label="New chat" title="New Chat" style="padding: 0 12px; margin-right: 0;">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+            </button>
             <button class="chatbot-tab active" id="tabChat">Current Chat</button>
             <button class="chatbot-tab" id="tabHistory">History</button>
         </div>
