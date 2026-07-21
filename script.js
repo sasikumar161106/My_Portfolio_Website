@@ -733,8 +733,8 @@ python main.py</pre>
             // Reset UI
             messagesContainer.innerHTML = `
                 <div class="chatbot-welcome">
-                    <p>👋 Hi I am DragGo</p>
-                    <p>I am Sasikumar's AI portfolio assistant</p>
+                    <p>hi i am dragGo</p>
+                    <p>i am sasikumars ai portfolio assistant</p>
                 </div>
             `;
             if (suggestionsContainer) {
