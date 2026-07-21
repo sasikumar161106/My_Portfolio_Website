@@ -781,6 +781,81 @@ python main.py</pre>
             });
         }
 
+        // --- Voice Features ---
+        let voiceEnabled = false;
+        const btnSpeaker = document.getElementById('chatbotSpeaker');
+        
+        if (btnSpeaker) {
+            btnSpeaker.addEventListener('click', () => {
+                voiceEnabled = !voiceEnabled;
+                const icon = btnSpeaker.querySelector('svg');
+                if (voiceEnabled) {
+                    icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
+                    btnSpeaker.style.color = '#3b82f6';
+                } else {
+                    icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+                    btnSpeaker.style.color = '';
+                    window.speechSynthesis.cancel();
+                }
+            });
+        }
+        
+        function speakMessage(text) {
+            if (!voiceEnabled || !window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+            const cleanText = text.replace(/[*_#`\[\]()]/g, ' ').replace(/>/g, '');
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Google') || v.name.includes('Microsoft') || v.name.includes('Samantha')));
+            if(preferredVoice) utterance.voice = preferredVoice;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        const btnMic = document.getElementById('chatbotMic');
+        let recognition = null;
+        let isListening = false;
+        
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            
+            recognition.onstart = function() {
+                isListening = true;
+                if (btnMic) btnMic.classList.add('listening');
+            };
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                input.value += (input.value ? ' ' : '') + transcript;
+                sendBtn.disabled = !input.value.trim();
+            };
+            
+            recognition.onerror = function() {
+                isListening = false;
+                if (btnMic) btnMic.classList.remove('listening');
+            };
+            
+            recognition.onend = function() {
+                isListening = false;
+                if (btnMic) btnMic.classList.remove('listening');
+            };
+            
+            if (btnMic) {
+                btnMic.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (isListening) {
+                        recognition.stop();
+                    } else {
+                        recognition.start();
+                    }
+                });
+            }
+        } else {
+            if (btnMic) btnMic.style.display = 'none';
+        }
+
         // --- Messaging Logic ---
         function scrollToBottom() {
             requestAnimationFrame(() => {
@@ -812,6 +887,8 @@ python main.py</pre>
                     a.setAttribute('target', '_blank');
                     a.setAttribute('rel', 'noopener noreferrer');
                 });
+                
+                if (save) speakMessage(content);
             }
 
             messagesContainer.appendChild(div);
