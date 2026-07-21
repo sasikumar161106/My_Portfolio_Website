@@ -623,81 +623,16 @@ python main.py</pre>
             }
         }
 
-        // --- Draggable FAB ---
-        let isDragging = false;
-        let dragHasMoved = false;
-        let startX, startY, initialRight, initialBottom;
+        // Simple toggle
+        fab.addEventListener('click', toggleChat);
         
-        function updatePositions(newRight, newBottom) {
-            // Keep within viewport bounds
-            newRight = Math.max(10, Math.min(newRight, window.innerWidth - 65));
-            newBottom = Math.max(10, Math.min(newBottom, window.innerHeight - 65));
-            
-            fab.style.right = newRight + 'px';
-            fab.style.bottom = newBottom + 'px';
-            
-            if (chatWindow) {
-                chatWindow.style.right = newRight + 'px';
-                chatWindow.style.bottom = (newBottom + 65) + 'px';
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+            if (chatWindow.classList.contains('open')) {
+                if (!chatWindow.contains(e.target) && !fab.contains(e.target)) {
+                    toggleChat();
+                }
             }
-            if (tooltip) {
-                tooltip.style.right = (newRight + 70) + 'px';
-                tooltip.style.bottom = (newBottom + 10) + 'px';
-            }
-        }
-        
-        function onDragStart(e) {
-            if (e.type === 'mousedown' && e.button !== 0) return;
-            isDragging = true;
-            dragHasMoved = false;
-            
-            const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-            const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-            startX = clientX;
-            startY = clientY;
-            
-            const rect = fab.getBoundingClientRect();
-            initialRight = window.innerWidth - rect.right;
-            initialBottom = window.innerHeight - rect.bottom;
-            document.body.style.userSelect = 'none';
-        }
-        
-        function onDragMove(e) {
-            if (!isDragging) return;
-            const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-            const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
-            const diffX = clientX - startX;
-            const diffY = clientY - startY;
-            
-            if (Math.abs(diffX) > 5 || Math.abs(diffY) > 5) {
-                dragHasMoved = true;
-            }
-            
-            if (dragHasMoved) {
-                e.preventDefault(); // Prevent scrolling while dragging
-                updatePositions(initialRight - diffX, initialBottom - diffY);
-            }
-        }
-        
-        function onDragEnd() {
-            isDragging = false;
-            document.body.style.userSelect = '';
-        }
-        
-        fab.addEventListener('mousedown', onDragStart);
-        document.addEventListener('mousemove', onDragMove);
-        document.addEventListener('mouseup', onDragEnd);
-        fab.addEventListener('touchstart', onDragStart, {passive: false});
-        document.addEventListener('touchmove', onDragMove, {passive: false});
-        document.addEventListener('touchend', onDragEnd);
-
-        fab.addEventListener('click', (e) => {
-            if (dragHasMoved) {
-                e.preventDefault();
-                e.stopPropagation();
-                return;
-            }
-            toggleChat();
         });
         
         if (closeBtn) closeBtn.addEventListener('click', toggleChat);
