@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
 
   const apiKey = process.env.ELEVENLABS_API_KEY;
   // Use a default voice ID (e.g. Adam/Rachel) or user-provided one from env
-  const voiceId = process.env.ELEVENLABS_VOICE_ID || "1SM7GgM6IMuvQlz2BwM3"; // User-provided custom voice ID
+  const voiceId = process.env.ELEVENLABS_VOICE_ID || "pNInz6obpgDQGcFmaJgB"; // Using 'Adam' (premade) so it works on the Free Tier
 
   if (!apiKey) {
     return res.status(500).json({ error: "ELEVENLABS_API_KEY is not configured on the server." });
