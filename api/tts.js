@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: "Text is required." });
     }
 
-    const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+    const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?optimize_streaming_latency=3`, {
       method: "POST",
       headers: {
         "Accept": "audio/mpeg",
@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       },
       body: JSON.stringify({
         text: text,
-        model_id: "eleven_multilingual_v2",
+        model_id: "eleven_turbo_v2_5",
         voice_settings: {
           stability: 0.5,
           similarity_boost: 0.75
