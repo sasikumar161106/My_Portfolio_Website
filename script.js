@@ -782,30 +782,41 @@ python main.py</pre>
         }
 
         // --- Voice Features ---
-        function speakMessage(text) {
-            if (!window.speechSynthesis) return;
-            window.speechSynthesis.cancel();
+        let currentAudio = null;
+        async function speakMessage(text) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
             const cleanText = text.replace(/[*_#`\[\]()]/g, ' ').replace(/>/g, '');
-            const utterance = new SpeechSynthesisUtterance(cleanText);
+            if (!cleanText) return;
             
-            // Lower pitch specifically to create a bolder/deeper tone
-            utterance.pitch = 0.8;
-            utterance.rate = 1.0;
+            try {
+                const response = await fetch('/api/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: cleanText })
+                });
+                
+                if (!response.ok) {
+                    console.error("TTS failed", await response.text());
+                    return;
+                }
+                
+                const blob = await response.blob();
+                const audioUrl = URL.createObjectURL(blob);
+                currentAudio = new Audio(audioUrl);
+                currentAudio.play();
+            } catch (err) {
+                console.error("Error playing audio:", err);
+            }
+        }
 
-            const voices = window.speechSynthesis.getVoices();
-            // Specifically parse known English Male synthetic voices locally available
-            const preferredVoice = voices.find(v => v.lang.includes('en') && (
-                v.name.includes('David') || 
-                v.name.includes('Google UK English Male') || 
-                v.name.includes('Mark') || 
-                v.name.includes('George') || 
-                v.name.includes('Alex') || 
-                v.name.includes('Daniel')
-            )) || voices.find(v => v.lang.includes('en') && v.name.includes('Male')) 
-               || voices.find(v => v.lang.includes('en'));
-               
-            if(preferredVoice) utterance.voice = preferredVoice;
-            window.speechSynthesis.speak(utterance);
+        function stopAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
         }
 
         const btnMic = document.getElementById('chatbotMic');
@@ -905,7 +916,7 @@ python main.py</pre>
                 stopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12"></rect></svg>';
                 stopBtn.title = "Stop audio";
                 stopBtn.addEventListener('click', () => {
-                    if (window.speechSynthesis) window.speechSynthesis.cancel();
+                    if (typeof stopAudio === 'function') stopAudio();
                 });
                 
                 actionBar.appendChild(speakBtn);
