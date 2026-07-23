@@ -678,11 +678,16 @@ python main.py</pre>
             currentSessionId = Date.now().toString();
             chatHistory = [];
             
+            const langSelect = document.getElementById('chatbotLanguage');
+            const lang = langSelect ? langSelect.value : 'English';
+            const welcome1 = lang === 'Spanish' ? '¡Hola! Soy DragGo' : lang === 'Tamil' ? 'வணக்கம்! நான் DragGo' : lang === 'Hindi' ? 'नमस्ते! मैं DragGo हूँ' : lang === 'French' ? 'Salut! Je suis DragGo' : 'Hi! I am DragGo';
+            const welcome2 = lang === 'Spanish' ? 'Asistente de Portafolio de Sasikumar' : lang === 'Tamil' ? 'சசிகுமாரின் AI உதவியாளர்' : lang === 'Hindi' ? 'शशिकुमार का AI सहायक' : lang === 'French' ? 'Assistant IA de Sasikumar' : 'Sasikumar\\'s AI Portfolio Assistant';
+
             // Reset UI
             messagesContainer.innerHTML = `
                 <div class="chatbot-welcome">
-                    <p>Hi! I am DragGo</p>
-                    <p>Sasikumar's AI Portfolio Assistant</p>
+                    <p>${welcome1}</p>
+                    <p>${welcome2}</p>
                 </div>
             `;
             if (suggestionsContainer) {
@@ -963,11 +968,13 @@ python main.py</pre>
             try {
                 // Determine context size (last 6 messages)
                 const recentHistory = chatHistory.slice(-6);
+                const langSelect = document.getElementById('chatbotLanguage');
+                const selectedLang = langSelect ? langSelect.value : 'English';
                 
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ messages: recentHistory }),
+                    body: JSON.stringify({ messages: recentHistory, language: selectedLang }),
                 });
 
                 removeTyping();
@@ -1107,6 +1114,81 @@ python main.py</pre>
             }, { rootMargin: "-30% 0px -30% 0px" }); 
 
             sections.forEach(sec => observer.observe(sec));
+        }
+        
+        const translations = {
+            'English': {
+                placeholder: 'Ask DragGo...',
+                tabChat: 'Current Chat',
+                tabHistory: 'History',
+                startChatBtn: 'Start Chatting',
+                disclaimer: 'AI can make mistakes. Verify important info.',
+                subtitle: "Sasikumar's AI Portfolio Assistant",
+                welcome: ['Hi! I am DragGo', "Sasikumar's AI Portfolio Assistant"]
+            },
+            'Spanish': {
+                placeholder: 'Pregunta a DragGo...',
+                tabChat: 'Chat Actual',
+                tabHistory: 'Historial',
+                startChatBtn: 'Empezar a Chatear',
+                disclaimer: 'La IA puede cometer errores. Verifica la información.',
+                subtitle: "Asistente de Portafolio de Sasikumar",
+                welcome: ['¡Hola! Soy DragGo', "Asistente de Portafolio de Sasikumar"]
+            },
+            'Tamil': {
+                placeholder: 'DragGo-விடம் கேளுங்கள்...',
+                tabChat: 'தற்போதைய அரட்டை',
+                tabHistory: 'வரலாறு',
+                startChatBtn: 'அரட்டையைத் தொடங்கு',
+                disclaimer: 'AI தவறுகளை செய்யலாம். தகவலை சரிபார்க்கவும்.',
+                subtitle: "சசிகுமாரின் AI உதவியாளர்",
+                welcome: ['வணக்கம்! நான் DragGo', "சசிகுமாரின் AI உதவியாளர்"]
+            },
+            'Hindi': {
+                placeholder: 'DragGo से पूछें...',
+                tabChat: 'वर्तमान चैट',
+                tabHistory: 'इतिहास',
+                startChatBtn: 'चैट शुरू करें',
+                disclaimer: 'AI गलतियाँ कर सकता है। जानकारी सत्यापित करें।',
+                subtitle: "शशिकुमार का AI सहायक",
+                welcome: ['नमस्ते! मैं DragGo हूँ', "शशिकुमार का AI सहायक"]
+            },
+            'French': {
+                placeholder: 'Demandez à DragGo...',
+                tabChat: 'Chat Actuel',
+                tabHistory: 'Historique',
+                startChatBtn: 'Commencer le Chat',
+                disclaimer: 'L\\'IA peut faire des erreurs. Vérifiez les infos.',
+                subtitle: "Assistant IA de Sasikumar",
+                welcome: ['Salut! Je suis DragGo', "Assistant IA de Sasikumar"]
+            }
+        };
+
+        const langSelect = document.getElementById('chatbotLanguage');
+        if (langSelect) {
+            langSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                const t = translations[lang] || translations['English'];
+                
+                input.placeholder = t.placeholder;
+                tabChat.textContent = t.tabChat;
+                tabHistory.textContent = t.tabHistory;
+                if(startChatBtn) startChatBtn.textContent = t.startChatBtn;
+                
+                const subtitle = document.querySelector('.chatbot-header-subtitle');
+                if(subtitle) subtitle.textContent = t.subtitle;
+                
+                const splashSubtitle = document.querySelector('.chatbot-splash-content p');
+                if(splashSubtitle) splashSubtitle.textContent = t.subtitle;
+                
+                const disclaimer = document.querySelector('.chatbot-disclaimer');
+                if(disclaimer) disclaimer.textContent = t.disclaimer;
+                
+                const welcomeContainer = messagesContainer.querySelector('.chatbot-welcome');
+                if(welcomeContainer) {
+                    welcomeContainer.innerHTML = \`<p>\${t.welcome[0]}</p><p>\${t.welcome[1]}</p>\`;
+                }
+            });
         }
         
         // Initialize state on load
