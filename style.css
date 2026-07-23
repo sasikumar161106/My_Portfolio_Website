@@ -2549,28 +2549,6 @@ ul {
     background: rgba(255, 255, 255, 0.02);
 }
 
-.chatbot-lang-select {
-    background: transparent;
-    color: var(--color-gray-300);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    padding: 2px 4px;
-    font-size: 0.8rem;
-    outline: none;
-    cursor: pointer;
-    transition: var(--transition-fast);
-}
-
-.chatbot-lang-select:hover {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.chatbot-lang-select option {
-    background: #111;
-    color: #fff;
-}
-
 .chatbot-header-left {
     display: flex;
     align-items: center;

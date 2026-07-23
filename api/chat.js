@@ -14,7 +14,6 @@ const SYSTEM_CONTEXT = `You are DragGo, the AI assistant on Sasikumar's develope
 - When listing multiple items, use a compact bullet list.
 - If a question matches a project, recommend it with relevant details.
 - For recruiters or collaboration inquiries, mention relevant experience and offer to connect via email.
-- You support multiple languages. Always respond in the SAME language the user uses (e.g., if asked in Tamil, reply in Tamil).
 
 ## Rules
 - The context below is your ONLY source of truth about Sasikumar. If it doesn't cover something, say so honestly — never make up facts.
@@ -126,7 +125,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { messages, language } = req.body;
+    const { messages } = req.body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: "Messages array is required." });
@@ -142,15 +141,9 @@ module.exports = async (req, res) => {
     const recentMessages = messages.slice(-6);
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    
-    let finalSystemContext = SYSTEM_CONTEXT;
-    if (language) {
-      finalSystemContext += `\n\nCRITICAL RULE: The user's preferred language is ${language}. You MUST reply entirely in ${language}.`;
-    }
-
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash",
-      systemInstruction: finalSystemContext,
+      systemInstruction: SYSTEM_CONTEXT,
     });
 
     // Convert messages to Gemini format
