@@ -681,7 +681,7 @@ python main.py</pre>
             const langSelect = document.getElementById('chatbotLanguage');
             const lang = langSelect ? langSelect.value : 'English';
             const welcome1 = lang === 'Spanish' ? '¡Hola! Soy DragGo' : lang === 'Tamil' ? 'வணக்கம்! நான் DragGo' : lang === 'Hindi' ? 'नमस्ते! मैं DragGo हूँ' : lang === 'French' ? 'Salut! Je suis DragGo' : 'Hi! I am DragGo';
-            const welcome2 = lang === 'Spanish' ? 'Asistente de Portafolio de Sasikumar' : lang === 'Tamil' ? 'சசிகுமாரின் AI உதவியாளர்' : lang === 'Hindi' ? 'शशिकुमार का AI सहायक' : lang === 'French' ? 'Assistant IA de Sasikumar' : 'Sasikumar\\'s AI Portfolio Assistant';
+            const welcome2 = lang === 'Spanish' ? 'Asistente de Portafolio de Sasikumar' : lang === 'Tamil' ? 'சசிகுமாரின் AI உதவியாளர்' : lang === 'Hindi' ? 'शशिकुमार का AI सहायक' : lang === 'French' ? 'Assistant IA de Sasikumar' : "Sasikumar's AI Portfolio Assistant";
 
             // Reset UI
             messagesContainer.innerHTML = `
@@ -1158,7 +1158,7 @@ python main.py</pre>
                 tabChat: 'Chat Actuel',
                 tabHistory: 'Historique',
                 startChatBtn: 'Commencer le Chat',
-                disclaimer: 'L\\'IA peut faire des erreurs. Vérifiez les infos.',
+                disclaimer: "L'IA peut faire des erreurs. Vérifiez les infos.",
                 subtitle: "Assistant IA de Sasikumar",
                 welcome: ['Salut! Je suis DragGo', "Assistant IA de Sasikumar"]
             }
@@ -1186,7 +1186,7 @@ python main.py</pre>
                 
                 const welcomeContainer = messagesContainer.querySelector('.chatbot-welcome');
                 if(welcomeContainer) {
-                    welcomeContainer.innerHTML = \`<p>\${t.welcome[0]}</p><p>\${t.welcome[1]}</p>\`;
+                    welcomeContainer.innerHTML = `<p>${t.welcome[0]}</p><p>${t.welcome[1]}</p>`;
                 }
             });
         }
